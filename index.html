@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForexBid — The smarter way to get FX</title>
+  <meta name="description" content="ForexBid is a transparent P2P FX bidding platform. Post a Request, receive Bids, and close the best Deal.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Outfit:wght@500;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-setup.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header" data-active="home"></div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <div class="eyebrow">P2P Foreign Exchange Marketplace</div>
+          <h1>The smarter way to<br>get FX.</h1>
+          <p class="hero-copy">
+            ForexBid is a transparent bidding platform that connects buyers and sellers for foreign exchange.
+            Instead of fixed rates, you post a Request, receive competitive Bids, and close the best Deal.
+            Faster execution. Better rates. Full control.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#get-fx">Get FX</a>
+            <a class="btn btn-ghost light" href="#how-it-works">How it works</a>
+          </div>
+          <div class="quick-stats">
+            <div><b>$2.4M+</b><span>Daily Volume</span></div>
+            <div><b>&lt; 15m</b><span>Average Settlement</span></div>
+            <div><b>0.25%</b><span>Average Saved on Rate</span></div>
+            <div><b>100%</b><span>Verified Partners</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit">
+            <div class="orbit-ring"></div>
+            <div class="orbit-ring orbit-ring-2"></div>
+            <div class="fx-node" style="top:6%;left:38%"><div class="fx-ava" style="background:#1cb8b8">CA</div><div><b>CAD</b><span>Toronto</span></div></div>
+            <div class="fx-node" style="top:15%;left:2%"><div class="fx-ava" style="background:#2eb67d">US</div><div><b>USD</b><span>New York</span></div></div>
+            <div class="fx-node" style="top:10%;right:2%"><div class="fx-ava" style="background:#e8442a">EU</div><div><b>EUR</b><span>Berlin</span></div></div>
+            <div class="fx-node" style="top:59%;left:0"><div class="fx-ava" style="background:#4a7eb5">UK</div><div><b>GBP</b><span>London</span></div></div>
+            <div class="fx-node" style="bottom:8%;left:18%"><div class="fx-ava" style="background:#c44b8a">JP</div><div><b>JPY</b><span>Tokyo</span></div></div>
+            <div class="fx-node" style="bottom:12%;right:2%"><div class="fx-ava" style="background:#d4a017">NG</div><div><b>NGN</b><span>Lagos</span></div></div>
+            <div class="fx-node" style="top:38%;right:0"><div class="fx-ava" style="background:#f29c12">₿</div><div><b>BTC</b><span>Dubai</span></div></div>
+            <div class="live-badge"><i></i> LIVE BIDS</div>
+            <div class="orbit-core">
+              <div>
+                <div class="fx-hub">FX</div>
+                <small>P2P HUB</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prop-strip" id="value">
+      <div class="container">
+        <div class="benefits">
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <strong>Trusted &amp; Transparent</strong>
+            <span>Verified participants and clean, auditable transaction details.</span>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l5-5 4 4 7-8"/><path d="M14 7h6v6"/></svg>
+            </div>
+            <strong>Best Rates</strong>
+            <span>Live competitive bidding forces providers to present better FX rates.</span>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+            </div>
+            <strong>Real-time &amp; Quick</strong>
+            <span>Instantly post requests and receive competitive bids within minutes.</span>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+            </div>
+            <strong>Secure Settlement</strong>
+            <span>Strict capital isolation and monitored transaction safety guarantees.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="get-fx">
+      <div class="container">
+        <div class="section-head center" id="fx-head">
+          <div class="section-kicker" id="fx-kicker">Get Foreign Exchange</div>
+          <h2 id="fx-title">Tell us what you need</h2>
+          <p id="fx-lede">Submit an auction request in seconds, let verified providers bid competitively, and select the rate that suits you best.</p>
+        </div>
+
+        <div class="steps" role="tablist" aria-label="Get FX steps">
+          <button class="step is-active" type="button" data-step="1"><span class="step-num">1</span><span class="label">Request</span></button>
+          <div class="step-line" data-step-line="1"></div>
+          <button class="step" type="button" data-step="2"><span class="step-num">2</span><span class="label">Bid</span></button>
+          <div class="step-line" data-step-line="2"></div>
+          <button class="step" type="button" data-step="3"><span class="step-num">3</span><span class="label">Deal</span></button>
+        </div>
+
+        <div class="request-card">
+          <div class="step-panel" data-step-panel="1">
+            <h3>Step 1: Create Request</h3>
+            <form id="request-form">
+              <div class="form-fields">
+                <div class="field">
+                  <label for="from-amount">You Sell (From)</label>
+                  <div class="field-box">
+                    <div class="currency-select">
+                      <span class="fx-flag" id="from-flag" aria-hidden="true"></span>
+                      <select id="from-currency" aria-label="From currency"></select>
+                    </div>
+                    <input id="from-amount" type="text" inputmode="decimal" value="5,000.00" autocomplete="off">
+                  </div>
+                </div>
+
+                <div class="swap-wrap">
+                  <button class="swap-btn" type="button" id="swap-pair" aria-label="Swap currencies">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M7 8h11M15 5l3 3-3 3" stroke="#4A154B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M17 16H6M9 13l-3 3 3 3" stroke="#4A154B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="field">
+                  <label for="to-amount">Desired Destination (To)</label>
+                  <div class="field-box">
+                    <div class="currency-select">
+                      <span class="fx-flag" id="to-flag" aria-hidden="true"></span>
+                      <select id="to-currency" aria-label="To currency"></select>
+                    </div>
+                    <input id="to-amount" type="text" readonly>
+                  </div>
+                  <p class="rate-hint" id="rate-hint">Rate: between 1,500 and 1,800</p>
+                </div>
+              </div>
+
+              <div class="form-options">
+                <div class="switch-row">
+                  <span>Only show rates from active bidders</span>
+                  <span class="switch">
+                    <input id="active-only" type="checkbox" checked>
+                    <i></i>
+                  </span>
+                </div>
+                <label class="check-row">
+                  <input id="terms-agree" type="checkbox" checked>
+                  <span>I agree to the terms of the P2P ForexBid transaction marketplace.</span>
+                </label>
+              </div>
+
+              <label class="captcha-row">
+                <input type="checkbox" id="request-captcha" required>
+                <span>I'm not a robot</span>
+                <span class="captcha-brand">reCAPTCHA<br>Privacy - Terms</span>
+              </label>
+
+              <p class="form-note" id="request-error" hidden>Enter an amount, accept the terms, and complete the captcha to continue.</p>
+              <button class="btn btn-brand form-submit" type="submit">Continue to Bids</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="bids-panel" data-step-panel="2" hidden>
+          <div class="bids-toolbar">
+            <label class="bids-search">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="#625F5C" stroke-width="1.2"/><path d="M11 11l3 3" stroke="#625F5C" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <input id="bid-search" type="search" placeholder="Filter BDC / Banks...">
+            </label>
+            <label class="bids-sort">
+              <span>Sort by:</span>
+              <select id="bid-sort" aria-label="Sort bids">
+                <option value="rate">Highest Rate</option>
+                <option value="fast">Fastest</option>
+                <option value="rating">Top Rated</option>
+              </select>
+            </label>
+          </div>
+          <div id="bid-list" class="bid-list"></div>
+          <div id="bid-pager" class="pager"></div>
+        </div>
+
+        <div class="deal-panel" data-step-panel="3" hidden>
+          <div class="deal-split">
+            <div class="deal-pay">
+              <h3>You Pay</h3>
+              <div class="deal-row"><span>Post Amount</span><b id="deal-from-amount">GBP 5,000.00</b></div>
+              <div class="deal-row">
+                <span>Service Fee</span>
+                <b id="deal-fee">GBP 50.00</b>
+              </div>
+              <button class="fee-link" type="button" id="fee-link">How we calculate service fee</button>
+              <hr>
+              <div class="deal-row total"><span>Total Outlay</span><strong id="deal-pay-total">GBP 5,050.00</strong></div>
+              <div class="fee-callout" id="fee-callout" hidden>
+                <div class="fee-callout-head">
+                  <span>How we calculate service fee</span>
+                  <button type="button" id="fee-close" aria-label="Close">✕</button>
+                </div>
+                <table>
+                  <thead><tr><th>Send Amount</th><th>Service Fee %</th></tr></thead>
+                  <tbody>
+                    <tr><td>£100 – £250</td><td>7%</td></tr>
+                    <tr class="is-active"><td>£250 – £800</td><td>5%</td></tr>
+                    <tr><td>£800 – £5,000</td><td>3%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="deal-receive">
+              <h3>You Receive</h3>
+              <div class="deal-row"><span>Receive Amount</span><b class="ok" id="deal-receive-total">NGN 9,400,000.00</b></div>
+              <div class="deal-row"><span>Partner Rate</span><b id="deal-rate">1 GBP = 1,880.00 NGN</b></div>
+              <div class="deal-row"><span>Fulfill Partner</span><b class="brand" id="deal-partner-name">Organisation Trader</b></div>
+              <div class="deal-channel">
+                <small>Payment Channel</small>
+                <span class="pill" id="deal-methods">Direct Bank Transfer</span>
+              </div>
+              <button class="btn btn-primary" type="button" id="accept-deal">Accept &amp; Deal</button>
+              <button class="back-link" type="button" data-go-step="2">Back to List</button>
+            </div>
+          </div>
+          <span hidden id="deal-agree"></span>
+          <span hidden id="deal-error"></span>
+          <span hidden id="deal-partner-img"></span>
+          <span hidden id="deal-partner-stars"></span>
+          <span hidden id="deal-time"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">Three Simple Steps</div>
+          <h2>Safe, transparent execution</h2>
+          <p>By cutting out institutional middle-man overheads, we return the rate pricing power directly to market participants.</p>
+        </div>
+        <div class="how-grid">
+          <div class="how-step">
+            <div class="num">01</div>
+            <h3>Submit Request</h3>
+            <p class="lede">List your currency requirements, amount and timeline securely in seconds.</p>
+          </div>
+          <div class="how-step">
+            <div class="num">02</div>
+            <h3>Review Real-time Bids</h3>
+            <p class="lede">Watch multiple verified BDCs and banks propose competitive transaction rates.</p>
+          </div>
+          <div class="how-step">
+            <div class="num">03</div>
+            <h3>Close &amp; Escrow</h3>
+            <p class="lede">Secure the ideal rate, verify safe completion, and settle through isolated escrow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faqs">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">Questions &amp; Answers</div>
+          <h2>Frequently Asked</h2>
+        </div>
+        <div class="faq-list" style="max-width:800px;margin:0 auto">
+          <div class="faq-item open">
+            <button type="button">What is ForexBid? <span>−</span></button>
+            <div class="faq-body">ForexBid is a transparent, peer-to-peer bidding platform where buyers and sellers exchange foreign currency without fixed bank margins. You post your needs and currency providers compete for your trade.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button">How does ForexBid work? <span>+</span></button>
+            <div class="faq-body">Create a request with your desired currency pair and amount. Verified financial institutions and local currency providers place real-time bids. You choose the best rate, secure the funds, and complete the settlement safely.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button">Are FX providers verified? <span>+</span></button>
+            <div class="faq-body">Yes. In production, providers go through KYC and partner checks. This demo uses mock verified bidders so you can see the flow.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button">Are there transaction fees? <span>+</span></button>
+            <div class="faq-body">The Deal step shows the from-amount and a transparent transaction fee before you accept. Final production fees will follow the live rate card.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button">How are exchange rates determined? <span>+</span></button>
+            <div class="faq-body">Rates are not fixed by ForexBid. Verified bidders compete, and you pick the offer that suits you. That is the point of the auction.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head center">
+          <div class="section-kicker">Get in touch</div>
+          <h2>Connect with our global help desks</h2>
+          <p>Have questions about onboarding, larger volume limits, or institutional licenses?</p>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <label class="field-label" for="c-name">Full Name</label>
+          <input id="c-name" type="text" name="name" placeholder="e.g., Joe Bloggs" required>
+          <div class="two">
+            <div>
+              <label class="field-label" for="c-mobile">Mobile Number</label>
+              <input id="c-mobile" type="tel" name="mobile" placeholder="+44 |">
+            </div>
+            <div>
+              <label class="field-label" for="c-email">Email Address</label>
+              <input id="c-email" type="email" name="email" placeholder="joe@example.com" required>
+            </div>
+          </div>
+          <label class="field-label" for="c-message">Message</label>
+          <textarea id="c-message" name="message" rows="4" placeholder="Please write your inquiry details here..." required></textarea>
+          <label class="check-row">
+            <input type="checkbox" required>
+            <span>I am not a robot</span>
+          </label>
+          <button class="btn btn-brand" type="submit">Send Message</button>
+          <p class="form-note" id="contact-success">Thanks — your message is recorded in this demo only. No email is sent.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h2 id="checkout-title">Accept / Trade deal</h2>
+          <p class="lede">You need to sign in or register to accept this deal.</p>
+        </div>
+        <button class="icon-btn" type="button" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-split">
+        <form class="modal-pane" id="checkout-signin">
+          <h3>Sign in to your account</h3>
+          <label for="co-email">Email address</label>
+          <input id="co-email" type="email" required placeholder="you@email.com">
+          <label for="co-pass">Password</label>
+          <input id="co-pass" type="password" required placeholder="Password">
+          <button class="btn btn-brand" type="submit">Sign In</button>
+          <p class="auth-extra"><a href="password-reminder.html">Forgot password?</a></p>
+        </form>
+        <form class="modal-pane" id="checkout-register">
+          <h3>New user registration</h3>
+          <label for="reg-first">First name</label>
+          <input id="reg-first" type="text" required placeholder="First name">
+          <label for="reg-last">Last name</label>
+          <input id="reg-last" type="text" required placeholder="Last name">
+          <label for="reg-email">Email</label>
+          <input id="reg-email" type="email" required placeholder="you@email.com">
+          <label for="reg-pass">Password</label>
+          <input id="reg-pass" type="password" required placeholder="Password">
+          <label for="reg-phone">Contact number</label>
+          <input id="reg-phone" type="tel" required placeholder="+44 |">
+          <button class="btn btn-brand" type="submit">Continue</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="js/app.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>
