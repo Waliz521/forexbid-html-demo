@@ -71,8 +71,11 @@ button {
 }
 
 .container {
-  width: min(var(--max), calc(100% - (var(--gutter) * 2)));
+  width: 100%;
+  max-width: calc(var(--max) + (var(--gutter) * 2));
   margin-inline: auto;
+  padding-inline: var(--gutter);
+  box-sizing: border-box;
 }
 
 .skip-link {

@@ -1,6 +1,7 @@
 tailwind.config = {
   corePlugins: {
-    preflight: false
+    preflight: false,
+    container: false
   },
   theme: {
     extend: {
