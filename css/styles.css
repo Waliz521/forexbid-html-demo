@@ -39,6 +39,10 @@ html {
   scroll-padding-top: 24px;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: var(--font);
@@ -658,6 +662,7 @@ button {
   font-size: 11px;
   font-weight: 700;
   z-index: 11;
+  white-space: nowrap;
 }
 
 .live-badge i {
@@ -791,6 +796,8 @@ button {
 .back-link {
   color: #663380;
   text-align: center;
+  width: 100%;
+  margin-top: 8px;
 }
 
 .deal-channel small {
@@ -1018,6 +1025,9 @@ button {
   font-size: 18px;
   font-weight: 500;
   line-height: 23px;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
 }
 
 .step .label {
@@ -2019,6 +2029,11 @@ button {
   background: #fff;
 }
 
+.modal-pane .btn {
+  width: 100%;
+  padding: 14px;
+}
+
 /* App shell (secure-area stubs used by Milestone 1 links) */
 .app-header {
   background: #fff;
@@ -2208,15 +2223,24 @@ button {
   .steps {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    gap: 8px;
+  }
+
+  .step {
+    font-size: 13px;
+    gap: 6px;
   }
 
   .step-line {
     display: none;
   }
 
-  .step span.label {
-    display: none;
+  .live-badge {
+    left: 50%;
+    top: 61%;
+    bottom: auto;
+    transform: translateX(-50%);
+    z-index: 12;
   }
 
   .benefits,

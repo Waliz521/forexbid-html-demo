@@ -106,16 +106,16 @@
           <p id="fx-lede">Submit an auction request in seconds, let verified providers bid competitively, and select the rate that suits you best.</p>
         </div>
 
-        <div class="steps" role="tablist" aria-label="Get FX steps">
-          <button class="step is-active" type="button" data-step="1"><span class="step-num">1</span><span class="label">Request</span></button>
+        <div class="steps" aria-label="Get FX progress">
+          <div class="step is-active" data-step="1"><span class="step-num">1</span><span class="label">Request</span></div>
           <div class="step-line" data-step-line="1"></div>
-          <button class="step" type="button" data-step="2"><span class="step-num">2</span><span class="label">Bid</span></button>
+          <div class="step" data-step="2"><span class="step-num">2</span><span class="label">Bid</span></div>
           <div class="step-line" data-step-line="2"></div>
-          <button class="step" type="button" data-step="3"><span class="step-num">3</span><span class="label">Deal</span></button>
+          <div class="step" data-step="3"><span class="step-num">3</span><span class="label">Deal</span></div>
         </div>
 
-        <div class="request-card">
-          <div class="step-panel" data-step-panel="1">
+        <div class="request-card" data-step-panel="1">
+          <div class="step-panel">
             <h3>Step 1: Create Request</h3>
             <form id="request-form">
               <div class="form-fields">
@@ -195,6 +195,7 @@
           </div>
           <div id="bid-list" class="bid-list"></div>
           <div id="bid-pager" class="pager"></div>
+          <button class="back-link" type="button" data-go-step="1">Back to Request</button>
         </div>
 
         <div class="deal-panel" data-step-panel="3" hidden>

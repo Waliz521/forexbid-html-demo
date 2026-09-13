@@ -35,14 +35,14 @@
     { id: "org1", name: "Organisation Trader", type: "organisation", rateAdj: 0.9976, hours: 0, delivery: "Instant Delivery", rating: 4.0, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
     { id: "org2", name: "Organisation Trader", type: "organisation", rateAdj: 0.9947, hours: 0, delivery: "Instant Delivery", rating: 4.8, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
     { id: "org3", name: "Organisation Trader", type: "organisation", rateAdj: 0.9936, hours: 24, delivery: "Within 24 Hours", rating: 4.8, reliability: "low", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org4", name: "Organisation Trader", type: "organisation", rateAdj: 0.992, hours: 12, delivery: "Instant Delivery", rating: 4.5, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
+    { id: "org4", name: "Organisation Trader", type: "organisation", rateAdj: 0.992, hours: 12, delivery: "Instant Delivery", rating: 4.5, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
     { id: "ind2", name: "Individual Trader", type: "individual", rateAdj: 0.991, hours: 24, delivery: "Within 24 Hours", rating: 4.3, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org5", name: "Organisation Trader", type: "organisation", rateAdj: 0.99, hours: 36, delivery: "Within 24 Hours", rating: 4.1, reliability: "low", methods: ["Direct Bank Transfer"], active: true },
+    { id: "org5", name: "Organisation Trader", type: "organisation", rateAdj: 0.99, hours: 36, delivery: "Within 24 Hours", rating: 4.1, reliability: "low", methods: ["Direct Bank Transfer"], active: false },
     { id: "ind3", name: "Individual Trader", type: "individual", rateAdj: 0.988, hours: 6, delivery: "Instant Delivery", rating: 4.6, reliability: "best", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org6", name: "Organisation Trader", type: "organisation", rateAdj: 0.986, hours: 48, delivery: "Within 24 Hours", rating: 4.0, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
-    { id: "ind4", name: "Individual Trader", type: "individual", rateAdj: 0.984, hours: 24, delivery: "Within 24 Hours", rating: 4.2, reliability: "low", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org7", name: "Organisation Trader", type: "organisation", rateAdj: 0.982, hours: 12, delivery: "Instant Delivery", rating: 4.4, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
-    { id: "ind5", name: "Individual Trader", type: "individual", rateAdj: 0.98, hours: 18, delivery: "Within 24 Hours", rating: 4.7, reliability: "best", methods: ["Direct Bank Transfer"], active: true }
+    { id: "org6", name: "Organisation Trader", type: "organisation", rateAdj: 0.986, hours: 48, delivery: "Within 24 Hours", rating: 4.0, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
+    { id: "ind4", name: "Individual Trader", type: "individual", rateAdj: 0.984, hours: 24, delivery: "Within 24 Hours", rating: 4.2, reliability: "low", methods: ["Direct Bank Transfer"], active: false },
+    { id: "org7", name: "Organisation Trader", type: "organisation", rateAdj: 0.982, hours: 12, delivery: "Instant Delivery", rating: 4.4, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
+    { id: "ind5", name: "Individual Trader", type: "individual", rateAdj: 0.98, hours: 18, delivery: "Within 24 Hours", rating: 4.7, reliability: "best", methods: ["Direct Bank Transfer"], active: false }
   ];
 
   const state = {
@@ -202,8 +202,6 @@
       if (t) t.textContent = copy.title;
       if (l) l.textContent = copy.lede;
     }
-    const card = document.querySelector(".request-card");
-    if (card) card.hidden = n !== 1;
     if (n === 2) renderBids();
     if (n === 3) renderDeal();
   }
@@ -411,9 +409,6 @@
 
     document.querySelectorAll("[data-go-step]").forEach((btn) => {
       btn.addEventListener("click", () => showStep(Number(btn.dataset.goStep)));
-    });
-    document.querySelectorAll("[data-step]").forEach((btn) => {
-      btn.addEventListener("click", () => showStep(Number(btn.dataset.step)));
     });
 
     document.getElementById("accept-deal").addEventListener("click", () => {
