@@ -179,15 +179,39 @@
   };
 
   function keepGetFxInView() {
-    const el = document.getElementById("get-fx");
-    if (!el) return;
     const header = document.querySelector(".site-header");
     const headerH = header ? header.getBoundingClientRect().height : 0;
-    const top = window.scrollY + el.getBoundingClientRect().top - headerH;
+    const steps = document.querySelector(".steps");
+    const panel = document.querySelector("[data-step-panel]:not([hidden])");
+    const gap = 8;
+    const available = window.innerHeight - headerH - gap;
     const root = document.documentElement;
     const prev = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
-    window.scrollTo(0, Math.max(0, top));
+
+    function scrollToY(y) {
+      window.scrollTo(0, Math.max(0, y));
+    }
+
+    if (steps && panel) {
+      const stepsTop = window.scrollY + steps.getBoundingClientRect().top;
+      const blockH = panel.getBoundingClientRect().bottom - steps.getBoundingClientRect().top;
+      if (blockH > 0 && blockH < available) {
+        scrollToY(stepsTop - headerH - (available - blockH) / 2);
+        root.style.scrollBehavior = prev;
+        return;
+      }
+      scrollToY(stepsTop - headerH - gap);
+      root.style.scrollBehavior = prev;
+      return;
+    }
+
+    const el = panel || document.getElementById("get-fx");
+    if (!el) {
+      root.style.scrollBehavior = prev;
+      return;
+    }
+    scrollToY(window.scrollY + el.getBoundingClientRect().top - headerH - gap);
     root.style.scrollBehavior = prev;
   }
 

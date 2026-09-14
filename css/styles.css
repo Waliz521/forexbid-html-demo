@@ -2189,6 +2189,14 @@ button {
     padding-top: 36px;
   }
 
+  #get-fx {
+    padding: 28px 0 40px;
+  }
+
+  #get-fx .section-head {
+    margin-bottom: 16px;
+  }
+
   .hero-visual {
     min-height: 320px;
   }
