@@ -159,9 +159,9 @@
         <section>
           <h2 class="section-head-row" style="margin:0 0 16px">Trading Currency Activity</h2>
           <div class="pair-tabs" id="pair-tabs">
-            <button type="button" class="is-on" data-pair="GBP/USD">GBP/USD Pair (Active)</button>
-            <button type="button" data-pair="GBP/EUR">GBP/EUR Pair</button>
-            <button type="button" data-pair="USD/NGN">USD/NGN Pair</button>
+            <button type="button" class="is-on" data-pair="GBP/USD">GBP/USD <small>Active</small></button>
+            <button type="button" data-pair="GBP/EUR">GBP/EUR</button>
+            <button type="button" data-pair="USD/NGN">USD/NGN</button>
           </div>
           <div class="tabs-content" style="margin-top:16px">
             <article class="settings-card">
@@ -169,10 +169,10 @@
                 <h3>Trading Parameters</h3>
                 <span class="status-badge status-progress">Active</span>
               </div>
-              <div id="pair-params"></div>
+              <div class="pair-params" id="pair-params"></div>
               <div class="param-actions">
-                <button class="btn-edit" type="button">Edit</button>
-                <button class="btn-del" type="button">Delete</button>
+                <a class="btn-edit" href="currencies.html">Edit pair</a>
+                <a class="btn-del" href="currencies.html">Manage</a>
               </div>
             </article>
             <article class="bids-panel-card">
@@ -183,7 +183,7 @@
                   <button class="mini-filter" type="button">Filter</button>
                 </div>
               </div>
-              <div class="bids-table-wrap">
+              <div class="bids-table-wrap dash-bids-table">
                 <table class="bids-table">
                   <thead>
                     <tr>
@@ -199,6 +199,7 @@
                   <tbody id="bids-body"></tbody>
                 </table>
               </div>
+              <div class="dash-bid-cards" id="bids-cards"></div>
               <div class="table-pager">
                 <span id="bids-count">Showing 1-4 of 12 bids</span>
                 <div class="pages" id="bids-pages"></div>
@@ -211,5 +212,6 @@
   </div>
   <script src="js/app-shell.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/selects.js"></script>
 </body>
 </html>

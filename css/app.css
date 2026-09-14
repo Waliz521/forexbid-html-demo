@@ -98,6 +98,10 @@ body.is-app {
   display: none;
 }
 
+.app-sidebar-backdrop[hidden] {
+  display: none !important;
+}
+
 body.sidebar-collapsed .app-sidebar {
   width: 72px;
   padding: 24px 8px 16px;
@@ -122,6 +126,7 @@ body.sidebar-collapsed .app-nav-item {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
 }
 
 .app-topbar {
@@ -145,6 +150,11 @@ body.sidebar-collapsed .app-nav-item {
   border: 1px solid #e2dce5;
 }
 
+.app-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
 .app-title-area h1 {
   font-family: var(--display);
   font-size: 20px;
@@ -152,6 +162,9 @@ body.sidebar-collapsed .app-nav-item {
   line-height: 25px;
   margin: 0;
   color: #2d2a26;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .app-title-area p {
@@ -165,6 +178,7 @@ body.sidebar-collapsed .app-nav-item {
   display: flex;
   align-items: center;
   gap: 24px;
+  flex-shrink: 0;
 }
 
 .app-search {
@@ -253,14 +267,14 @@ body.sidebar-collapsed .app-nav-item {
   place-items: center;
 }
 
-.app-userchip strong {
+.app-user-meta strong {
   display: block;
   font-size: 13px;
   line-height: 17px;
   color: #2d2a26;
 }
 
-.app-userchip a {
+.app-user-meta a {
   font-size: 12px;
   line-height: 16px;
   color: #94918f;
@@ -608,12 +622,16 @@ body.sidebar-collapsed .app-nav-item {
 
 .pair-tabs {
   display: flex;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-bottom: 1px solid #e2dce5;
 }
 
 .pair-tabs button {
-  padding: 10px 20px;
+  flex: 0 0 auto;
+  padding: 10px 16px;
   border: 0;
   background: transparent;
   font-size: 14px;
@@ -621,6 +639,18 @@ body.sidebar-collapsed .app-nav-item {
   color: #625f5c;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
+  white-space: nowrap;
+}
+
+.pair-tabs button small {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #ebf8f2;
+  color: #2eb67d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .pair-tabs button.is-on {
@@ -656,6 +686,7 @@ body.sidebar-collapsed .app-nav-item {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .settings-card h3,
@@ -688,11 +719,15 @@ body.sidebar-collapsed .app-nav-item {
   gap: 8px;
 }
 
-.param-actions button {
+.param-actions .btn-edit,
+.param-actions .btn-del {
   flex: 1;
-  height: 32px;
-  border-radius: 6px;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -710,6 +745,7 @@ body.sidebar-collapsed .app-nav-item {
 
 .header-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -731,8 +767,53 @@ body.sidebar-collapsed .app-nav-item {
   font-size: 12px;
 }
 
-.bids-table-wrap {
-  overflow-x: auto;
+.dash-bid-cards {
+  display: none;
+}
+
+.dash-bid-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e2dce5;
+}
+
+.dash-bid-card:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.dash-bid-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-bid-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: #625f5c;
+}
+
+.dash-bid-meta b {
+  color: #2d2a26;
+  font-size: 14px;
+}
+
+.pair-params {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.dash-bid-card .accept-btn {
+  width: 100%;
+  justify-content: center;
+  height: 36px;
 }
 
 .bids-table {
@@ -821,6 +902,7 @@ body.sidebar-collapsed .app-nav-item {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
   padding-top: 8px;
   font-size: 12px;
   color: #625f5c;
@@ -828,6 +910,7 @@ body.sidebar-collapsed .app-nav-item {
 
 .pages {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
 }
 
@@ -871,15 +954,13 @@ body.sidebar-collapsed .app-nav-item {
   flex-wrap: wrap;
 }
 
-.req-search,
-.req-select {
-  height: 42px;
-  padding: 8px 12px;
-  background: #fff;
-  border: 1px solid #e2dce5;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #2d2a26;
+.req-filters .fx-select {
+  min-width: 160px;
+  flex: 1;
+}
+
+.st-filters-group .fx-select {
+  min-width: 160px;
 }
 
 .req-search {
@@ -887,6 +968,12 @@ body.sidebar-collapsed .app-nav-item {
   align-items: center;
   gap: 8px;
   width: 240px;
+  height: 42px;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #e2dce5;
+  border-radius: 8px;
+  font-size: 13px;
   color: #625f5c;
 }
 
@@ -1945,6 +2032,7 @@ body.sidebar-collapsed .app-nav-item {
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .fund-progress-head h3,
@@ -2014,6 +2102,7 @@ body.sidebar-collapsed .app-nav-item {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .mini-chip {
@@ -2070,6 +2159,7 @@ body.sidebar-collapsed .app-nav-item {
   display: flex;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: wrap;
   padding-top: 12px;
 }
 
@@ -2791,7 +2881,11 @@ select.tc-input {
     transform: none;
   }
 
-  .app-sidebar-backdrop {
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  body.sidebar-open .app-sidebar-backdrop {
     display: block;
     position: fixed;
     inset: 0;
@@ -2805,22 +2899,52 @@ select.tc-input {
 
   .app-topbar {
     padding: 12px 16px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 10px;
   }
 
-  .app-search {
-    width: min(280px, 100%);
+  .app-title-area h1 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .app-title-area p,
+  .app-search,
+  .app-user-meta {
+    display: none;
+  }
+
+  .app-topbar-right {
+    width: auto;
+    gap: 8px;
   }
 
   .app-body {
     padding: 20px 16px;
   }
 
-  .app-userchip strong {
-    max-width: 90px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .mini-filter {
+    display: none;
+  }
+
+  .header-actions,
+  .mini-search {
+    width: 100%;
+  }
+
+  .dash-bids-table {
+    display: none;
+  }
+
+  .dash-bid-cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.is-app input,
+  body.is-app select,
+  body.is-app textarea {
+    font-size: 16px;
   }
 }
 
@@ -2830,18 +2954,89 @@ select.tc-input {
   }
 
   .app-topbar-right {
-    width: 100%;
-    justify-content: flex-end;
-    gap: 12px;
+    width: auto;
+    gap: 8px;
   }
 
   .app-search {
     display: none;
   }
 
+  .mini-filter {
+    display: none;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .mini-search {
+    width: 100%;
+  }
+
+  .dash-bids-table {
+    display: none;
+  }
+
+  .dash-bid-cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pair-params {
+    grid-template-columns: 1fr;
+  }
+
+  .req-filters,
+  .st-filters-group,
+  .st-exports {
+    width: 100%;
+  }
+
+  .req-search,
+  .req-select,
+  .req-filters .fx-select,
+  .st-filters-group .fx-select {
+    width: 100%;
+  }
+
   .alert-strip {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .alert-actions {
+    width: 100%;
+  }
+
+  .table-panel,
+  .chat-panel,
+  .dr-escrow,
+  .dr-panel,
+  .fund-progress-card,
+  .fund-side,
+  .tc-card,
+  .nr-card {
+    padding: 16px;
+  }
+
+  .field-box {
+    flex-wrap: wrap;
+  }
+
+  .currency-select {
+    width: 100%;
+    min-width: 0;
+    border-right: 0;
+    border-bottom: 1px solid #e2dce5;
+    padding-right: 0;
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+  }
+
+  .field-box input {
+    text-align: left;
+    font-size: 18px;
   }
 
   .notif-row {
@@ -2884,7 +3079,8 @@ select.tc-input {
     align-items: stretch;
   }
 
-  .chat-send {
+  .chat-send,
+  .chat-call {
     width: 100%;
   }
 
@@ -2905,16 +3101,30 @@ select.tc-input {
     grid-template-columns: 1fr;
   }
 
+  .tc-stat-row {
+    flex-direction: column;
+  }
+
+  .tc-stat-row .is-end {
+    text-align: left;
+  }
+
   .tc-toolbar .btn-dash {
     width: 100%;
     justify-content: center;
   }
 
-  .st-exports {
-    width: 100%;
+  .st-filters {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .st-btn {
     flex: 1;
+  }
+
+  .fund-escrow,
+  .tc-modal-card {
+    padding: 20px 16px;
   }
 }

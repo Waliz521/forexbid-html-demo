@@ -103,6 +103,24 @@
         <td><a class="accept-btn" href="deal-flow.html">Accept Bid</a></td>
       </tr>`;
     }).join("");
+    document.getElementById("bids-cards").innerHTML = slice.map((b) => {
+      const badge = b.status === "Open" ? "status-open" : "status-bid";
+      return `<article class="dash-bid-card">
+        <div class="dash-bid-top">
+          <span class="provider-cell"><span class="ico-wrap">${b.type === "org" ? orgIco() : personIco()}</span>${b.name}</span>
+          <span class="status-badge ${badge}">${b.status}</span>
+        </div>
+        <div class="dash-bid-meta">
+          <span>Rate <b>${b.rate}</b></span>
+          <span class="rating-cell">★ ${b.rating}</span>
+        </div>
+        <div class="dash-bid-meta">
+          <span class="route-cell"><span class="route-from">${p.from}</span>→<span class="route-to">${p.to}</span></span>
+          <span>${b.delivery}</span>
+        </div>
+        <a class="accept-btn" href="deal-flow.html">Accept Bid</a>
+      </article>`;
+    }).join("");
     const end = start + slice.length;
     document.getElementById("bids-count").textContent = `Showing ${list.length ? start + 1 : 0}-${end} of ${list.length} bids`;
     document.getElementById("bids-pages").innerHTML = Array.from({ length: pages }, (_, i) => {

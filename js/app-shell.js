@@ -14,7 +14,8 @@
     search: ico("M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3"),
     bell: ico("M6 8a6 6 0 1112 0c0 7 3 8 3 8H3s3-1 3-8M10 21a2 2 0 004 0"),
     panel: ico("M15 6l-6 6 6 6"),
-    menu: ico("M4 7h16M4 12h16M4 17h16")
+    menu: ico("M4 7h16M4 12h16M4 17h16"),
+    out: ico("M10 7V5a2 2 0 012-2h7v18h-7a2 2 0 01-2-2v-2M4 12h11M8 8l-4 4 4 4")
   };
 
   const NAV = [
@@ -27,7 +28,8 @@
 
   const SEC = [
     { id: "help", href: "index.html#contact", label: "Help & Support", icon: "info" },
-    { id: "settings", href: "profile.html", label: "Settings", icon: "settings" }
+    { id: "settings", href: "profile.html", label: "Settings", icon: "settings" },
+    { id: "signout", href: "index.html", label: "Sign Out", icon: "out" }
   ];
 
   function navItem(item, active) {
@@ -69,8 +71,8 @@
             <span class="app-badge">3</span>
           </a>
           <div class="app-userchip">
-            <span class="app-avatar" aria-hidden="true">JW</span>
-            <div>
+            <a class="app-avatar" href="profile.html" aria-label="James Wilson, profile">JW</a>
+            <div class="app-user-meta">
               <strong>James Wilson</strong>
               <a href="index.html">Sign Out</a>
             </div>
@@ -94,12 +96,25 @@
       btn.addEventListener("click", () => {
         const backdrop = root.querySelector(".app-sidebar-backdrop");
         if (window.matchMedia("(max-width: 900px)").matches) {
+          document.body.classList.remove("sidebar-collapsed");
           const open = document.body.classList.toggle("sidebar-open");
           if (backdrop) backdrop.hidden = !open;
         } else {
+          document.body.classList.remove("sidebar-open");
+          if (backdrop) backdrop.hidden = true;
           document.body.classList.toggle("sidebar-collapsed");
         }
       });
+    });
+
+    window.addEventListener("resize", () => {
+      const backdrop = root.querySelector(".app-sidebar-backdrop");
+      if (window.matchMedia("(max-width: 900px)").matches) {
+        document.body.classList.remove("sidebar-collapsed");
+      } else {
+        document.body.classList.remove("sidebar-open");
+        if (backdrop) backdrop.hidden = true;
+      }
     });
   }
 
