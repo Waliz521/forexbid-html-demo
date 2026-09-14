@@ -21,7 +21,7 @@
   --shadow-lg: 0 16px 40px rgba(74, 21, 75, 0.12);
   --radius: 16px;
   --radius-sm: 8px;
-  --header-h: 80px;
+  --header-h: 92px;
   --max: 1240px;
   --gutter: 100px;
   --font: "Geist", "Inter", "Segoe UI", sans-serif;
@@ -125,19 +125,17 @@ button {
 }
 
 .logo img {
-  width: 36px;
-  height: 36px;
+  display: block;
+  width: auto;
+  height: 76px;
 }
 
-.logo-word {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.03em;
+.site-footer .logo img {
+  height: 88px;
 }
 
-.logo-word span {
-  color: #fff;
+.app-header .logo img {
+  height: 64px;
 }
 
 .nav-toggle {
@@ -2055,7 +2053,7 @@ button {
 }
 
 .app-header-inner {
-  height: 68px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2150,11 +2148,24 @@ button {
 @media (max-width: 760px) {
   :root {
     --gutter: 20px;
+    --header-h: 80px;
   }
 
   .nav-toggle {
     display: grid;
     place-items: center;
+  }
+
+  .logo img {
+    height: 62px;
+  }
+
+  .site-footer .logo img {
+    height: 72px;
+  }
+
+  .app-header .logo img {
+    height: 56px;
   }
 
   .nav {

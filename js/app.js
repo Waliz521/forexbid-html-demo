@@ -36,8 +36,7 @@
       <header class="site-header">
         <div class="container header-inner">
           <a class="logo" href="index.html">
-            <img src="assets/logo.svg" alt="" width="36" height="36">
-            <span class="logo-word">Forex<span>Bid</span></span>
+            <img src="assets/logo-dark.jpg" alt="ForexBID">
           </a>
           <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
           <nav class="nav" id="site-nav">
@@ -75,8 +74,7 @@
           <div class="footer-grid">
             <div>
               <a class="logo" href="index.html">
-                <img src="assets/logo.svg" alt="" width="36" height="36">
-                <span class="logo-word">Forex<span>Bid</span></span>
+                <img src="assets/logo-dark.jpg" alt="ForexBID">
               </a>
               <p class="footer-blurb">The premier peer-to-peer auction marketplace for global currency exchange. Cutting margin overheads and returning rate control back to you.</p>
             </div>
