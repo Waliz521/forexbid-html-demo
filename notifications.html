@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile — ForexBid</title>
+  <title>Notifications — ForexBid</title>
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,16 +14,18 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <div id="app-shell" class="app-shell" data-active="settings" data-title="Settings" data-lede="Profile, KYC and security.">
+  <div id="app-shell" class="app-shell" data-active="dashboard" data-title="Notifications" data-lede="Stay updated with ForexBid account, trading activity, and system notices.">
     <div class="app-main">
       <div class="app-body">
-        <div class="app-card">
-          <p class="lede">My Profile / Settings is next. Paste any Profile or KYC tabs from Figma.</p>
-          <a class="btn btn-teal" href="dashboard.html">Back to dashboard</a>
+        <div class="notif-toolbar">
+          <div class="notif-pills" id="notif-pills"></div>
+          <button class="notif-mark" type="button" id="notif-mark">Mark all as read</button>
         </div>
+        <div class="notif-card" id="notif-list"></div>
       </div>
     </div>
   </div>
   <script src="js/app-shell.js"></script>
+  <script src="js/notifications.js"></script>
 </body>
 </html>

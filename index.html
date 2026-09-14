@@ -115,9 +115,13 @@
         </div>
 
         <div class="request-card" data-step-panel="1">
-          <div class="step-panel">
+          <div class="request-card-head">
             <h3>Step 1: Create Request</h3>
-            <form id="request-form">
+            <a class="icon-btn" href="#main" aria-label="Close">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#625F5C" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+          <form id="request-form">
               <div class="form-fields">
                 <div class="field">
                   <label for="from-amount">You Sell (From)</label>
@@ -175,7 +179,6 @@
               <p class="form-note" id="request-error" hidden>Enter an amount, accept the terms, and complete the captcha to continue.</p>
               <button class="btn btn-brand form-submit" type="submit">Continue to Bids</button>
             </form>
-          </div>
         </div>
 
         <div class="bids-panel" data-step-panel="2" hidden>

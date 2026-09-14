@@ -3,52 +3,387 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deal flow — ForexBid</title>
+  <title>Deal Room — ForexBid</title>
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/tailwind-setup.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <header class="app-header">
-    <div class="container app-header-inner">
-      <a class="logo" href="index.html">
-        <img src="assets/logo-light.jpg" alt="ForexBID">
-      </a>
-      <nav class="app-nav">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="profile.html">My profile</a>
-        <div class="app-user">Joe Bloggs <a href="index.html">Sign out</a></div>
-      </nav>
-    </div>
-  </header>
-  <main class="app-page">
-    <div class="container">
-      <h1 style="font-family:var(--display);margin-top:0">Deal flow</h1>
-      <p class="lede">This page allows you to manage a Forex deal between you and another party.</p>
-      <div class="app-card">
-        <p id="deal-summary" class="lede">You accepted a mock bid from checkout. Activity, Messages, Funding and Reviews tabs come in Milestone 2.</p>
-        <div class="step-actions">
-          <a class="btn btn-teal" href="dashboard.html">Go to dashboard</a>
-          <a class="btn btn-ghost" href="index.html#get-fx">Back to Get FX</a>
+  <div id="app-shell" class="app-shell" data-active="deals" data-title="Deal Room — Settlement Hub" data-lede="Securely finalize details and deposit transaction funds to escrow.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="dr-top">
+          <div class="dr-meta-left">
+            <span class="status-badge status-progress" id="dr-status">In Progress</span>
+            <h2>Deal Reference: #<span id="dr-ref">234567890</span></h2>
+          </div>
+          <div class="dr-timer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 8v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Delivery target: 24 Hours
+          </div>
+        </div>
+
+        <section class="dr-escrow">
+          <article class="dr-panel">
+            <p class="dr-kicker">You Pay (Sell currency)</p>
+            <div class="dr-val">
+              <strong id="dr-pay">GBP 5,050.00</strong>
+              <span id="dr-pay-note">Breakdown: Base GBP 5,000.00 + Fee GBP 50.00</span>
+            </div>
+            <hr>
+            <div class="dr-fund">
+              <div class="dr-fund-labels">
+                <span id="dr-funded-left">Funding Progress</span>
+                <b id="dr-funded-label">75% Funded</b>
+              </div>
+              <div class="bar-track dr-bar" id="dr-bar"><div class="bar-fill bar-ok" id="dr-funded-bar" style="width:75%"></div></div>
+            </div>
+          </article>
+
+          <div class="dr-lock">
+            <span class="dr-lock-badge" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M7 8h11M15 5l3 3-3 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 16H6M9 13l-3 3 3 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="dr-lock-label">Rate Lock</span>
+            <b id="dr-rate">1.2900</b>
+          </div>
+
+          <article class="dr-panel">
+            <p class="dr-kicker">You Receive (Buy currency)</p>
+            <div class="dr-val">
+              <strong class="recv-amt" id="dr-recv">NGN 10,000,000</strong>
+              <span id="dr-recv-note">Exchange from GBP 5,000.00</span>
+            </div>
+            <hr>
+            <div class="dr-party">
+              <span class="dr-party-ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19V9.5L12 5l8 4.5V19" stroke="currentColor" stroke-width="1.7"/><path d="M9 19v-5h6v5" stroke="currentColor" stroke-width="1.7"/></svg>
+              </span>
+              <div>
+                <strong id="dr-party">Organisation Trader</strong>
+                <span class="dr-rating" id="dr-party-sub">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#F0AE00" aria-hidden="true"><path d="M12 3.5l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4 7.2 18.4l.9-5.4L4.2 9.2l5.4-.8L12 3.5z"/></svg>
+                  4.8 Rating
+                </span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <div class="dr-actions">
+          <button class="dr-btn primary" type="button" id="dr-fund-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.2 7.8-7 9-3.8-1.2-7-4-7-9V7l7-4z" stroke="#fff" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Fund Escrow Transaction
+          </button>
+          <button class="dr-btn outline" type="button" data-tab="chats">Message Provider</button>
+          <button class="dr-btn danger" type="button" id="dr-dispute-btn">Report Dispute</button>
+        </div>
+
+        <div class="dr-tabs-block">
+          <div class="deal-tabs dr-tabs" id="dr-tabs">
+            <button type="button" class="is-on" data-tab="activity">Escrow Activity Log</button>
+            <button type="button" data-tab="chats">Discussions / Chats</button>
+            <button type="button" data-tab="funding">Funding</button>
+            <button type="button" data-tab="filings">Regulatory Filings</button>
+          </div>
+
+          <div class="dr-timeline" id="tab-activity">
+            <article class="dr-event">
+              <time>2:30 PM</time>
+              <span class="dr-event-ico tone-green" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v5c0 5-3.2 7.8-7 9-3.8-1.2-7-4-7-9V7l7-4z" stroke="#2EB67D" stroke-width="1.2"/><path d="M9 12l2 2 4-4" stroke="#2EB67D" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>ForexBid System</strong>
+                <span>Partial funding confirmed — 75% escrow secure.</span>
+              </div>
+            </article>
+            <article class="dr-event">
+              <time>11:05 AM</time>
+              <span class="dr-event-ico tone-muted" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#4A154B" stroke-width="1.2"/><path d="M8 12l2.5 2.5L16 9" stroke="#4A154B" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>Organisation Trader</strong>
+                <span>Provider full counterparty funding received in escrow.</span>
+              </div>
+            </article>
+            <article class="dr-event">
+              <time>10:48 AM</time>
+              <span class="dr-event-ico tone-orange" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#FF9800" stroke-width="1.2"/><path d="M12 8v5l3 2" stroke="#FF9800" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>Joe Bloggs (You)</strong>
+                <span>Escrow payment transaction initiated for partial sum.</span>
+              </div>
+            </article>
+            <article class="dr-event">
+              <time>10:42 AM</time>
+              <span class="dr-event-ico tone-blue" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 7v10M7 12h10" stroke="#4A7EB5" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>ForexBid System</strong>
+                <span>P2P Deal contract created safely. Escrow lock active.</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="chat-panel" id="tab-chats" hidden>
+            <div class="chat-head">
+              <div class="chat-partner">
+                <span class="dr-party-ico chat-partner-ico" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19V9.5L12 5l8 4.5V19" stroke="currentColor" stroke-width="1.7"/><path d="M9 19v-5h6v5" stroke="currentColor" stroke-width="1.7"/></svg>
+                </span>
+                <div>
+                  <div class="chat-partner-name">
+                    <strong id="chat-party">Organisation Trader</strong>
+                    <span class="verified-chip">Verified</span>
+                  </div>
+                  <span class="dr-rating">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#F0AE00" aria-hidden="true"><path d="M12 3.5l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4 7.2 18.4l.9-5.4L4.2 9.2l5.4-.8L12 3.5z"/></svg>
+                    4.8 Rating • Online
+                  </span>
+                </div>
+              </div>
+              <button class="chat-call" type="button" id="chat-call">Call Partner</button>
+            </div>
+            <p class="chat-call-note" id="chat-call-note" hidden>Voice call is not available in this demo.</p>
+
+            <div class="chat-thread" id="dr-chat">
+              <div class="chat-row">
+                <article class="chat-bubble them">
+                  <p>Hello, we have confirmed receipt of your initial funding. We will process the NGN transfer once full escrow is confirmed.</p>
+                  <time>10:52 AM</time>
+                </article>
+              </div>
+              <div class="chat-row is-you">
+                <article class="chat-bubble you">
+                  <p>Thank you. I have just submitted the remaining GBP 1,262.50 via bank transfer. Should arrive within 2 hours.</p>
+                  <time>11:15 AM</time>
+                </article>
+              </div>
+              <div class="chat-row">
+                <article class="chat-bubble them">
+                  <p>Noted. We will monitor and confirm. Our settlement desk processes within 4 hours of full escrow confirmation.</p>
+                  <time>11:18 AM</time>
+                </article>
+              </div>
+              <div class="chat-row is-you">
+                <article class="chat-bubble you">
+                  <p>Perfect, thank you for the update.</p>
+                  <time>11:20 AM</time>
+                </article>
+              </div>
+            </div>
+
+            <div class="chat-warn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 4.7L2.8 18a2 2 0 001.7 3h15a2 2 0 001.7-3L13.7 4.7a2 2 0 00-3.4 0z" stroke="#E8442A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Never share your password, OTP or sensitive account credentials in messages.
+            </div>
+
+            <form class="chat-composer" id="dr-composer">
+              <label class="chat-input-wrap">
+                <input type="text" id="dr-chat-input" placeholder="Type a message..." required>
+                <input type="file" id="chat-file" hidden>
+                <button class="chat-attach" type="button" id="chat-attach" aria-label="Attach file">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 12.5V17a5 5 0 01-10 0V7a3 3 0 016 0v9.5a1.5 1.5 0 01-3 0V8" stroke="#625F5C" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </button>
+              </label>
+              <button class="chat-send" type="submit">Send</button>
+            </form>
+          </div>
+
+          <div class="fund-view" id="tab-funding" hidden>
+            <article class="fund-progress-card">
+              <div class="fund-progress-head">
+                <h3>Escrow Progress</h3>
+                <span id="fund-progress-copy">75% of transaction funded</span>
+              </div>
+              <div class="bar-track fund-progress-bar"><div class="bar-fill bar-ok" id="fund-progress-fill" style="width:75%"></div></div>
+            </article>
+
+            <div class="fund-split">
+              <article class="fund-side">
+                <div class="fund-side-head">
+                  <h3>Your Funding</h3>
+                  <span class="mini-chip ok" id="fund-you-chip">Active Deposit</span>
+                </div>
+                <ul class="fund-lines" id="fund-you-lines">
+                  <li>
+                    <div>
+                      <b>GBP 2,525.00</b>
+                      <small>Jun 15, 2026 • Bank Transfer</small>
+                    </div>
+                    <span class="mini-chip ok">Confirmed</span>
+                  </li>
+                  <li>
+                    <div>
+                      <b>GBP 1,262.50</b>
+                      <small>Jun 14, 2026 • PayPal</small>
+                    </div>
+                    <span class="mini-chip ok">Confirmed</span>
+                  </li>
+                </ul>
+                <div class="fund-totals">
+                  <div>
+                    <small>Total Funded</small>
+                    <strong id="fund-total">GBP 3,787.50</strong>
+                  </div>
+                  <div class="is-end">
+                    <small>Remaining Balance</small>
+                    <strong class="is-remain" id="fund-remain">GBP 1,262.50</strong>
+                  </div>
+                </div>
+                <button class="fund-cta" type="button" id="fund-deposit">Deposit Escrow Balance</button>
+              </article>
+
+              <article class="fund-side">
+                <div class="fund-side-head">
+                  <div class="fund-side-title">
+                    <h3>Counterparty Funding</h3>
+                    <span id="fund-party-label">(Organisation Trader)</span>
+                  </div>
+                  <span class="mini-chip gold" id="fund-them-chip">Partially Funded</span>
+                </div>
+                <ul class="fund-lines">
+                  <li>
+                    <div>
+                      <b>NGN 7,500,000</b>
+                      <small>Jun 15, 2026</small>
+                    </div>
+                    <span class="mini-chip ok">Confirmed</span>
+                  </li>
+                  <li>
+                    <div>
+                      <b>NGN 2,500,000</b>
+                      <small>Jun 14, 2026</small>
+                    </div>
+                    <span class="mini-chip gold">Pending</span>
+                  </li>
+                </ul>
+                <div class="fund-totals">
+                  <div>
+                    <small>Total Target Escrow</small>
+                    <strong>NGN 10,000,000</strong>
+                  </div>
+                  <div class="is-end">
+                    <small>Confirmed Deposit</small>
+                    <strong class="recv-amt">NGN 7,500,000</strong>
+                  </div>
+                </div>
+                <button class="fund-cta ghost" type="button" id="fund-ping">Send Funding Reminder Ping</button>
+                <p class="chat-call-note" id="fund-ping-note" hidden>Reminder sent to Organisation Trader.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="dr-panel-tab" id="tab-filings" hidden>
+            <p class="lede">Filings attached to this mock deal. Nothing is uploaded in the demo.</p>
+            <ul class="dr-filings">
+              <li>Deal contract lock — recorded 10:42 AM</li>
+              <li>Escrow acknowledgement — pending full funding</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </main>
-  <div id="site-footer"></div>
-  <script src="js/app.js"></script>
-  <script>
-    try {
-      var bid = JSON.parse(sessionStorage.getItem("fxb-selected-bid") || "null");
-      if (bid) {
-        document.getElementById("deal-summary").textContent =
-          "Locked demo deal with " + bid.partner + ": " + bid.amount + " " + bid.from + " → " + bid.to +
-          " at " + Number(bid.rate).toLocaleString() + ". Full deal-room tabs are Milestone 2.";
-      }
-    } catch (e) {}
-  </script>
+  </div>
+
+  <div class="modal" id="fund-modal" role="dialog" aria-modal="true" aria-labelledby="fund-title">
+    <div class="modal-backdrop" data-close-fund></div>
+    <div class="modal-card fund-escrow">
+      <form id="fund-form">
+        <div class="fund-escrow-head">
+          <h2 id="fund-title">Fund Escrow Transaction</h2>
+          <button class="icon-btn" type="button" data-close-fund aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#625F5C" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <p class="fund-escrow-lede">Depositing funds into ForexBid’s secure client isolation escrow is safe. No funds are released to counterparty until transaction settlement verification.</p>
+        <hr class="fund-escrow-rule">
+        <div class="fund-amounts">
+          <div>
+            <span>Amount Required:</span>
+            <b id="fund-required">GBP 5,050.00</b>
+          </div>
+          <div>
+            <span>Already Funded:</span>
+            <b class="is-ok" id="fund-already">GBP 3,787.50</b>
+          </div>
+          <hr>
+          <div>
+            <span>Remaining Balance:</span>
+            <strong class="is-remain" id="fund-remain-val">GBP 1,262.50</strong>
+          </div>
+          <div class="bar-track fund-modal-bar"><div class="bar-fill bar-ok" id="fund-modal-bar" style="width:75%"></div></div>
+        </div>
+        <label class="fund-input-field">
+          <span id="fund-amount-label">Enter Amount to Deposit (GBP)</span>
+          <input id="fund-amount" type="text" inputmode="decimal" value="1,262.50" autocomplete="off">
+        </label>
+        <div class="fund-methods-block">
+          <p>Select funding method</p>
+          <div class="fund-methods" role="radiogroup" aria-label="Funding method">
+            <button class="fund-method is-on" type="button" data-method="bank">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/><path d="M3 12h18M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9M12 3c-2.5 3-3.5 6-3.5 9s1 6 3.5 9" stroke="currentColor" stroke-width="1.2"/></svg>
+              Bank Transfer
+            </button>
+            <button class="fund-method" type="button" data-method="paypal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="3" width="11" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h9" stroke="currentColor" stroke-width="1.2"/></svg>
+              PayPal Account
+            </button>
+            <button class="fund-method" type="button" data-method="card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.2 7.8-7 9-3.8-1.2-7-4-7-9V7l7-4z" stroke="currentColor" stroke-width="1.2"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Debit Card
+            </button>
+          </div>
+        </div>
+        <div class="fund-escrow-actions">
+          <button class="fund-proceed" type="submit" id="fund-proceed">Proceed with Secure Bank Deposit</button>
+          <p class="fund-trust">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.2 7.8-7 9-3.8-1.2-7-4-7-9V7l7-4z" stroke="#2EB67D" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#2EB67D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            ForexBid is a registered regulatory FX Escrow Intermediary.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="dispute-modal" role="dialog" aria-modal="true" aria-labelledby="dispute-title">
+    <div class="modal-backdrop" data-close-dispute></div>
+    <div class="modal-card dr-modal">
+      <div class="modal-head">
+        <div>
+          <h2 id="dispute-title">Report Dispute</h2>
+          <p class="lede">This flags the mock deal for review. No ticket is sent.</p>
+        </div>
+        <button class="icon-btn" type="button" data-close-dispute aria-label="Close">×</button>
+      </div>
+      <form id="dispute-form">
+        <label class="field">
+          <span class="field-label">Reason</span>
+          <select class="nr-select">
+            <option>Delayed funding</option>
+            <option>Incorrect amount</option>
+            <option>Counterparty unresponsive</option>
+          </select>
+        </label>
+        <button class="dr-btn danger" type="submit">Submit dispute</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app-shell.js"></script>
+  <script src="js/deal-flow.js"></script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Deals — ForexBid</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-setup.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app-shell" class="app-shell" data-active="deals" data-title="My Deals" data-lede="Monitor active deal executions and view escrow settlement histories.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="deal-tabs" id="deal-tabs"></div>
+        <div class="table-panel">
+          <div class="bids-table-wrap">
+            <table class="bids-table">
+              <thead>
+                <tr>
+                  <th>Deal Number</th>
+                  <th>Currency Pair</th>
+                  <th>Counterparty</th>
+                  <th>You Pay</th>
+                  <th>You Receive</th>
+                  <th>Rate</th>
+                  <th>Funding Status</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="deal-body"></tbody>
+            </table>
+          </div>
+          <div class="table-pager">
+            <span id="deal-count">Showing 1-6 of 18 deals</span>
+            <div class="pages" id="deal-pages"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app-shell.js"></script>
+  <script src="js/deals.js"></script>
+</body>
+</html>

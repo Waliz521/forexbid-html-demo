@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Requests — ForexBid</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-setup.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app-shell" class="app-shell" data-active="requests" data-title="My Requests" data-lede="Manage, track, and create foreign exchange request auctions.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="req-toolbar">
+          <div class="req-filters">
+            <label class="req-search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input id="req-q" type="search" placeholder="Search Request ID...">
+            </label>
+            <select class="req-select" id="req-status" aria-label="Status">
+              <option value="all">Status: All</option>
+              <option value="Bidding">Bidding</option>
+              <option value="Bid Selected">Bid Selected</option>
+              <option value="Open">Open</option>
+              <option value="Completed">Completed</option>
+              <option value="Expired">Expired</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+            <select class="req-select" id="req-pair" aria-label="Currency">
+              <option value="all">Currency: All</option>
+              <option value="GBP/USD">GBP/USD</option>
+              <option value="USD/NGN">USD/NGN</option>
+              <option value="GBP/EUR">GBP/EUR</option>
+              <option value="GBP/NGN">GBP/NGN</option>
+              <option value="EUR/USD">EUR/USD</option>
+            </select>
+          </div>
+          <a class="btn-dash primary" href="new-request.html">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            New Request
+          </a>
+        </div>
+
+        <div class="table-panel">
+          <div class="bids-table-wrap">
+            <table class="bids-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Currency Pair</th>
+                  <th>From Amount</th>
+                  <th>To Amount</th>
+                  <th>Bids Received</th>
+                  <th>Best Rate</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="req-body"></tbody>
+            </table>
+          </div>
+          <div class="table-pager">
+            <span id="req-count">Showing 1-8 of 24 requests</span>
+            <div class="pages" id="req-pages"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app-shell.js"></script>
+  <script src="js/requests.js"></script>
+</body>
+</html>

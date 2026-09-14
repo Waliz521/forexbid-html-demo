@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Currencies — ForexBid</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-setup.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app-shell" class="app-shell" data-active="currencies" data-title="Trading Currencies" data-lede="Manage your foreign exchange base parameters and rate limits.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="tc-toolbar">
+          <h2>Active Trading Currency Pairs</h2>
+          <button class="btn-dash primary" type="button" id="tc-add">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add Trading Currency Pair
+          </button>
+        </div>
+        <div class="tc-grid" id="tc-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="tc-modal" role="dialog" aria-modal="true" aria-labelledby="tc-modal-title">
+    <div class="modal-backdrop" data-close-tc></div>
+    <div class="modal-card tc-modal-card">
+      <div class="tc-modal-head">
+        <h2 id="tc-modal-title">Add Trading Currency Pair</h2>
+        <button class="icon-btn" type="button" data-close-tc aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#625F5C" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <hr class="tc-modal-rule">
+      <form id="tc-form">
+        <div class="tc-form-scroll">
+          <div class="tc-form-row">
+            <label class="field">
+              <span class="field-label">From Currency (Sell)</span>
+              <select class="tc-input" id="tc-from"></select>
+            </label>
+            <label class="field">
+              <span class="field-label">To Currency (Buy)</span>
+              <select class="tc-input" id="tc-to"></select>
+            </label>
+          </div>
+
+          <div class="tc-group">
+            <span class="field-label">Buy Rate Range</span>
+            <div class="tc-form-row">
+              <label class="field">
+                <span class="field-label">Min Rate</span>
+                <input class="tc-input" id="tc-buy-min" type="text" required>
+              </label>
+              <label class="field">
+                <span class="field-label">Max Rate</span>
+                <input class="tc-input" id="tc-buy-max" type="text" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="tc-group">
+            <span class="field-label">Sell Rate Range</span>
+            <div class="tc-form-row">
+              <label class="field">
+                <span class="field-label">Min Rate</span>
+                <input class="tc-input" id="tc-sell-min" type="text" required>
+              </label>
+              <label class="field">
+                <span class="field-label">Max Rate</span>
+                <input class="tc-input" id="tc-sell-max" type="text" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="tc-group">
+            <span class="field-label">Buy Amount Range</span>
+            <div class="tc-form-row">
+              <label class="field">
+                <span class="field-label">Min Buy</span>
+                <input class="tc-input" id="tc-buy-min-amt" type="text" required>
+              </label>
+              <label class="field">
+                <span class="field-label">Max Buy</span>
+                <input class="tc-input" id="tc-buy-max-amt" type="text" required>
+              </label>
+            </div>
+          </div>
+
+          <label class="field">
+            <span class="field-label">Trading Expiry Date</span>
+            <input class="tc-input" id="tc-expiry" type="text" required>
+          </label>
+
+          <label class="switch-row tc-toggle-row" for="tc-active">
+            <span>
+              <b>Active Trading Status</b>
+              <small>Enable immediate bid submissions upon generation.</small>
+            </span>
+            <span class="switch">
+              <input id="tc-active" type="checkbox" checked>
+              <i></i>
+            </span>
+          </label>
+        </div>
+        <div class="tc-modal-actions">
+          <button class="tc-submit" type="submit" id="tc-save">Add Currency Pair</button>
+          <button class="tc-cancel" type="button" data-close-tc>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app-shell.js"></script>
+  <script src="js/currencies.js"></script>
+</body>
+</html>

@@ -45,6 +45,7 @@
               ${link("index.html#get-fx", "get-fx", "Get Started")}
               ${link("index.html#faqs", "faqs", "FAQs")}
               ${link("index.html#contact", "contact", "Contact")}
+              ${link("dashboard.html", "dashboard", "Dashboard")}
             </div>
             <div class="country-dd" id="country-dd">
               <button class="country-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
@@ -84,6 +85,19 @@
               <a href="index.html#get-fx">Get FX Requests</a>
               <a href="index.html#value">Value Proposition</a>
               <a href="index.html#faqs">FAQ Answers</a>
+            </div>
+            <div>
+              <h4>Account</h4>
+              <a href="login.html">Sign In</a>
+              <a href="dashboard.html">Dashboard</a>
+              <a href="requests.html">My Requests</a>
+              <a href="new-request.html">Create FX Request</a>
+              <a href="deals.html">My Deals</a>
+              <a href="deal-flow.html">Deal Room</a>
+              <a href="currencies.html">Trading Currencies</a>
+              <a href="statements.html">Statements</a>
+              <a href="notifications.html">Notifications</a>
+              <a href="profile.html">My Profile</a>
             </div>
             <div>
               <h4>Legal</h4>

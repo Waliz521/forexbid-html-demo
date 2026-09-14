@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statements — ForexBid</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-setup.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app-shell" class="app-shell" data-active="statements" data-title="Statements" data-lede="View and export your transaction history.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="st-filters">
+          <div class="st-filters-group">
+            <select class="req-select" id="st-range" aria-label="Date range">
+              <option value="30">Date Range: Last 30 Days</option>
+              <option value="7">Date Range: Last 7 Days</option>
+              <option value="90">Date Range: Last 90 Days</option>
+              <option value="all">Date Range: All time</option>
+            </select>
+            <select class="req-select" id="st-ccy" aria-label="Currency">
+              <option value="all">Currency: All</option>
+              <option value="GBP">Currency: GBP</option>
+              <option value="USD">Currency: USD</option>
+              <option value="EUR">Currency: EUR</option>
+              <option value="NGN">Currency: NGN</option>
+            </select>
+            <select class="req-select" id="st-type" aria-label="Type">
+              <option value="all">Type: All Types</option>
+              <option value="Deal Escrow">Type: Deal Escrow</option>
+              <option value="Deal Payout">Type: Deal Payout</option>
+              <option value="Refund">Type: Refund</option>
+              <option value="Funding">Type: Funding</option>
+              <option value="Funding Deposit">Type: Funding Deposit</option>
+              <option value="Transaction Fee">Type: Transaction Fee</option>
+            </select>
+            <select class="req-select" id="st-status" aria-label="Status">
+              <option value="Confirmed" selected>Status: Confirmed</option>
+              <option value="all">Status: All</option>
+              <option value="Pending">Status: Pending</option>
+              <option value="Failed">Status: Failed</option>
+            </select>
+          </div>
+          <div class="st-exports">
+            <button class="st-btn outline" type="button" id="st-csv">Export CSV</button>
+            <button class="st-btn solid" type="button" id="st-pdf">Export PDF</button>
+          </div>
+        </div>
+
+        <div class="table-panel">
+          <div class="bids-table-wrap">
+            <table class="bids-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Reference</th>
+                  <th>Currency Pair</th>
+                  <th>Amount</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Running Balance</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="st-body"></tbody>
+            </table>
+          </div>
+          <div class="table-pager">
+            <span id="st-count">Showing 1-10 of 124 transactions</span>
+            <div class="pages" id="st-pages"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app-shell.js"></script>
+  <script src="js/statements.js"></script>
+</body>
+</html>

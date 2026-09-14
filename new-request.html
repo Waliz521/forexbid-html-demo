@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New FX Request — ForexBid</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-setup.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app-shell" class="app-shell" data-active="requests" data-title="Create New FX Request" data-lede="Post a transparent currency requirements request to attract competitive bids from verified providers.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="nr-steps" id="nr-steps" aria-hidden="true"></div>
+
+        <div class="nr-wrap">
+          <form class="nr-card" id="nr-form">
+            <div class="nr-card-head">
+              <h2>Step 1: Create Request</h2>
+              <a class="icon-btn" href="requests.html" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#625F5C" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </a>
+            </div>
+
+            <div class="nr-fields">
+              <div class="field">
+                <label for="nr-from-amount">You Sell (From)</label>
+                <div class="field-box">
+                  <div class="currency-select">
+                    <span class="fx-flag" id="nr-from-flag" aria-hidden="true"></span>
+                    <select id="nr-from" aria-label="From currency"></select>
+                  </div>
+                  <input id="nr-from-amount" type="text" inputmode="decimal" value="5,000.00" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="nr-swap">
+                <button class="nr-swap-btn" type="button" id="nr-swap" aria-label="Swap currencies">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 8h11M15 5l3 3-3 3" stroke="#4A154B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17 16H6M9 13l-3 3 3 3" stroke="#4A154B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="field">
+                <label for="nr-to-amount">Desired Destination (To)</label>
+                <div class="field-box">
+                  <div class="currency-select">
+                    <span class="fx-flag" id="nr-to-flag" aria-hidden="true"></span>
+                    <select id="nr-to" aria-label="To currency"></select>
+                  </div>
+                  <input id="nr-to-amount" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="nr-mode">Trading Preference Mode</label>
+                <select class="nr-select" id="nr-mode">
+                  <option value="auction">Competitive P2P Bidding (Auction)</option>
+                  <option value="quote">Direct provider quote</option>
+                </select>
+              </div>
+
+              <div class="nr-toggles">
+                <label class="switch-row" for="nr-active">
+                  <span>Only show rates from active verified bidders</span>
+                  <span class="switch nr-switch">
+                    <input id="nr-active" type="checkbox" checked>
+                    <i></i>
+                  </span>
+                </label>
+                <label class="switch-row" for="nr-expiry">
+                  <span>Set request auction expiry time (Default 24 Hours)</span>
+                  <span class="switch nr-switch">
+                    <input id="nr-expiry" type="checkbox">
+                    <i></i>
+                  </span>
+                </label>
+              </div>
+
+              <div class="field">
+                <label for="nr-notes">Add private notes / transaction tags (Optional)</label>
+                <textarea class="nr-notes" id="nr-notes" rows="3" placeholder="e.g., Target school fees payment in London..."></textarea>
+              </div>
+
+              <label class="check-row nr-agree">
+                <input id="nr-terms" type="checkbox" checked>
+                <span>I agree to the terms of the P2P ForexBid transaction marketplace.</span>
+              </label>
+            </div>
+
+            <p class="form-note" id="nr-error" hidden>Enter an amount, pick two different currencies, and accept the terms to continue.</p>
+            <button class="nr-submit" type="submit">Review FX Request Details</button>
+          </form>
+
+          <div class="nr-card" id="nr-review" hidden>
+            <h2>Review FX Request</h2>
+            <dl class="nr-summary" id="nr-summary"></dl>
+            <div class="nr-actions">
+              <button class="btn-dash" type="button" id="nr-back">Back</button>
+              <button class="nr-submit" type="button" id="nr-confirm">Submit Request</button>
+            </div>
+          </div>
+
+          <div class="nr-card nr-done" id="nr-done" hidden>
+            <h2>Request posted</h2>
+            <p>Your FX request is now live. Verified providers can start bidding against it.</p>
+            <a class="nr-submit" href="requests.html">Go to My Requests</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app-shell.js"></script>
+  <script src="js/new-request.js"></script>
+</body>
+</html>

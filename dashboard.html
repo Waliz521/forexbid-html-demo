@@ -7,37 +7,209 @@
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/tailwind-setup.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <header class="app-header">
-    <div class="container app-header-inner">
-      <a class="logo" href="index.html">
-        <img src="assets/logo-light.jpg" alt="ForexBID">
-      </a>
-      <nav class="app-nav">
-        <a class="is-active" href="dashboard.html">Dashboard</a>
-        <a href="profile.html">My profile</a>
-        <div class="app-user">Joe Bloggs <a href="index.html">Sign out</a></div>
-      </nav>
-    </div>
-  </header>
-  <main class="app-page">
-    <div class="container">
-      <h1 style="font-family:var(--display);margin-top:0">Welcome Joe Bloggs</h1>
-      <div class="app-card">
-        <p class="lede">This is the customer dashboard shell. Full metrics, active deals and trading-pair tabs are built in Milestone 2.</p>
-        <div class="step-actions">
-          <a class="btn btn-teal" href="deal-flow.html">Open deal room</a>
-          <a class="btn btn-ghost" href="index.html#get-fx">New Get FX request</a>
+  <div id="app-shell" class="app-shell" data-active="dashboard" data-title="My Dashboard" data-lede="Welcome, James Wilson. Here's an overview of your ForexBid activity.">
+    <div class="app-main">
+      <div class="app-body">
+        <div class="metric-row">
+          <article class="metric-card">
+            <div>
+              <small>Total Requests</small>
+              <b>24</b>
+              <em>+3 this week</em>
+            </div>
+            <span class="metric-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+          </article>
+          <article class="metric-card">
+            <div>
+              <small>Bids Received</small>
+              <b>86</b>
+              <em>+12 pending review</em>
+            </div>
+            <span class="metric-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5h8a2 2 0 012 2v13l-6-3-6 3V7a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </span>
+          </article>
+          <article class="metric-card">
+            <div>
+              <small>ForexBid Account</small>
+              <b>FB-00234891</b>
+              <button class="copy-link" type="button" id="copy-account">Copy Account ID</button>
+            </div>
+            <span class="metric-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 16V6a2 2 0 012-2h10" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+          </article>
+          <article class="metric-card">
+            <div>
+              <small>Active Currency Pairs</small>
+              <b>3</b>
+              <em>GBP/USD, GBP/EUR, USD/NGN</em>
+            </div>
+            <span class="metric-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 3 3.5 6 3.5 9s-1 6-3.5 9c-2.5-3-3.5-6-3.5-9S9.5 6 12 3z" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+          </article>
         </div>
+
+        <div class="alert-strip" id="pair-alert">
+          <div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Your GBP/USD trading pair expires in 2 days.</span>
+          </div>
+          <div class="alert-actions">
+            <a class="btn-renew" href="currencies.html">Renew Pair</a>
+            <button class="alert-x" type="button" id="dismiss-alert" aria-label="Dismiss">✕</button>
+          </div>
+        </div>
+
+        <section>
+          <div class="section-head-row">
+            <h2>My Active Deals</h2>
+            <div class="carousel-arrows">
+              <button type="button" id="deal-prev" aria-label="Previous deals">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" id="deal-next" aria-label="Next deals">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="deal-scroll" id="deal-scroll" style="margin-top:16px">
+            <article class="deal-mini">
+              <div class="deal-mini-head">
+                <strong>GBP/USD</strong>
+                <span class="status-badge status-progress">In Progress</span>
+              </div>
+              <div>
+                <small>Amount (Sell/Buy)</small>
+                <div class="amt">5,000 / 9,400,000</div>
+              </div>
+              <div>
+                <div class="progress-labels"><span>Escrow Funding</span><b class="ok">75%</b></div>
+                <div class="bar-track"><div class="bar-fill bar-ok" style="width:75%"></div></div>
+              </div>
+              <a class="btn-deal" href="deal-flow.html">View Deal Room</a>
+            </article>
+            <article class="deal-mini">
+              <div class="deal-mini-head">
+                <strong>USD/NGN</strong>
+                <span class="status-badge status-new">New</span>
+              </div>
+              <div>
+                <small>Amount (Sell/Buy)</small>
+                <div class="amt">10,000 / 16,500,000</div>
+              </div>
+              <div>
+                <div class="progress-labels"><span>Escrow Funding</span><b style="color:#e8442a">20%</b></div>
+                <div class="bar-track"><div class="bar-fill bar-bad" style="width:20%"></div></div>
+              </div>
+              <a class="btn-deal" href="deal-flow.html">View Deal Room</a>
+            </article>
+            <article class="deal-mini">
+              <div class="deal-mini-head">
+                <strong>GBP/EUR</strong>
+                <span class="status-badge status-progress">In Progress</span>
+              </div>
+              <div>
+                <small>Amount (Sell/Buy)</small>
+                <div class="amt">3,500 / 4,100</div>
+              </div>
+              <div>
+                <div class="progress-labels"><span>Escrow Funding</span><b style="color:#ff9800">60%</b></div>
+                <div class="bar-track"><div class="bar-fill bar-mid" style="width:60%"></div></div>
+              </div>
+              <a class="btn-deal" href="deal-flow.html">View Deal Room</a>
+            </article>
+            <article class="deal-mini">
+              <div class="deal-mini-head">
+                <strong>USD/NGN</strong>
+                <span class="status-badge status-overdue">Overdue</span>
+              </div>
+              <div>
+                <small>Amount (Sell/Buy)</small>
+                <div class="amt">25,000 / 41,250,000</div>
+              </div>
+              <div>
+                <div class="progress-labels"><span>Escrow Funding</span><b style="color:#e8442a">95%</b></div>
+                <div class="bar-track"><div class="bar-fill bar-bad" style="width:95%"></div></div>
+              </div>
+              <a class="btn-deal" href="deal-flow.html">View Deal Room</a>
+            </article>
+          </div>
+        </section>
+
+        <div class="dash-actions">
+          <a class="btn-dash primary" href="new-request.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            New FX Request
+          </a>
+          <a class="btn-dash" href="statements.html">Export Statement</a>
+          <a class="btn-dash" href="currencies.html#add">Add Trading Currency Pair</a>
+        </div>
+
+        <section>
+          <h2 class="section-head-row" style="margin:0 0 16px">Trading Currency Activity</h2>
+          <div class="pair-tabs" id="pair-tabs">
+            <button type="button" class="is-on" data-pair="GBP/USD">GBP/USD Pair (Active)</button>
+            <button type="button" data-pair="GBP/EUR">GBP/EUR Pair</button>
+            <button type="button" data-pair="USD/NGN">USD/NGN Pair</button>
+          </div>
+          <div class="tabs-content" style="margin-top:16px">
+            <article class="settings-card">
+              <div class="card-head">
+                <h3>Trading Parameters</h3>
+                <span class="status-badge status-progress">Active</span>
+              </div>
+              <div id="pair-params"></div>
+              <div class="param-actions">
+                <button class="btn-edit" type="button">Edit</button>
+                <button class="btn-del" type="button">Delete</button>
+              </div>
+            </article>
+            <article class="bids-panel-card">
+              <div class="panel-header">
+                <h3 id="bids-title">Matched Bids for GBP/USD</h3>
+                <div class="header-actions">
+                  <input class="mini-search" id="bid-q" type="search" placeholder="Search bids...">
+                  <button class="mini-filter" type="button">Filter</button>
+                </div>
+              </div>
+              <div class="bids-table-wrap">
+                <table class="bids-table">
+                  <thead>
+                    <tr>
+                      <th>Provider</th>
+                      <th>Rate (NGN)</th>
+                      <th>Delivery</th>
+                      <th>Route</th>
+                      <th>Rating</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bids-body"></tbody>
+                </table>
+              </div>
+              <div class="table-pager">
+                <span id="bids-count">Showing 1-4 of 12 bids</span>
+                <div class="pages" id="bids-pages"></div>
+              </div>
+            </article>
+          </div>
+        </section>
       </div>
     </div>
-  </main>
-  <div id="site-footer"></div>
-  <script src="js/app.js"></script>
+  </div>
+  <script src="js/app-shell.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>

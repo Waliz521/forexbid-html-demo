@@ -693,11 +693,31 @@ button {
 .request-card {
   width: min(640px, 100%);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   background: #fff;
   border: 1px solid #e2dce5;
   box-shadow: 0 8px 24px rgba(74, 21, 75, 0.039);
   border-radius: 16px;
   padding: 32px;
+}
+
+.request-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.request-card-head h3 {
+  flex: 1;
+  margin: 0;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #2d2a26;
 }
 
 #request-form {
@@ -1757,7 +1777,7 @@ button {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.5fr 1fr 1.1fr 1fr 1.1fr;
   gap: 32px;
 }
 
