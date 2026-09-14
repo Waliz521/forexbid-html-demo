@@ -74,7 +74,7 @@
           <div class="footer-grid">
             <div>
               <a class="logo" href="index.html">
-                <img src="assets/logo-dark.jpg" alt="ForexBID">
+                <img src="assets/logo-footer.png" alt="ForexBID">
               </a>
               <p class="footer-blurb">The premier peer-to-peer auction marketplace for global currency exchange. Cutting margin overheads and returning rate control back to you.</p>
             </div>
