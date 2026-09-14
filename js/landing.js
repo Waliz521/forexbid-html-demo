@@ -32,14 +32,14 @@
 
   const BIDDERS = [
     { id: "ind1", name: "Individual Trader", type: "individual", rateAdj: 1, hours: 24, delivery: "Within 24 Hours", rating: 4.8, reliability: "best", methods: ["Direct Bank Transfer"], active: true },
+    { id: "org4", name: "Organisation Trader", type: "organisation", rateAdj: 0.9985, hours: 12, delivery: "Instant Delivery", rating: 4.5, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
     { id: "org1", name: "Organisation Trader", type: "organisation", rateAdj: 0.9976, hours: 0, delivery: "Instant Delivery", rating: 4.0, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
+    { id: "org5", name: "Organisation Trader", type: "organisation", rateAdj: 0.996, hours: 36, delivery: "Within 24 Hours", rating: 4.1, reliability: "low", methods: ["Direct Bank Transfer"], active: false },
     { id: "org2", name: "Organisation Trader", type: "organisation", rateAdj: 0.9947, hours: 0, delivery: "Instant Delivery", rating: 4.8, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
     { id: "org3", name: "Organisation Trader", type: "organisation", rateAdj: 0.9936, hours: 24, delivery: "Within 24 Hours", rating: 4.8, reliability: "low", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org4", name: "Organisation Trader", type: "organisation", rateAdj: 0.992, hours: 12, delivery: "Instant Delivery", rating: 4.5, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
+    { id: "org6", name: "Organisation Trader", type: "organisation", rateAdj: 0.9925, hours: 48, delivery: "Within 24 Hours", rating: 4.0, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
     { id: "ind2", name: "Individual Trader", type: "individual", rateAdj: 0.991, hours: 24, delivery: "Within 24 Hours", rating: 4.3, reliability: "normal", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org5", name: "Organisation Trader", type: "organisation", rateAdj: 0.99, hours: 36, delivery: "Within 24 Hours", rating: 4.1, reliability: "low", methods: ["Direct Bank Transfer"], active: false },
     { id: "ind3", name: "Individual Trader", type: "individual", rateAdj: 0.988, hours: 6, delivery: "Instant Delivery", rating: 4.6, reliability: "best", methods: ["Direct Bank Transfer"], active: true },
-    { id: "org6", name: "Organisation Trader", type: "organisation", rateAdj: 0.986, hours: 48, delivery: "Within 24 Hours", rating: 4.0, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
     { id: "ind4", name: "Individual Trader", type: "individual", rateAdj: 0.984, hours: 24, delivery: "Within 24 Hours", rating: 4.2, reliability: "low", methods: ["Direct Bank Transfer"], active: false },
     { id: "org7", name: "Organisation Trader", type: "organisation", rateAdj: 0.982, hours: 12, delivery: "Instant Delivery", rating: 4.4, reliability: "normal", methods: ["Direct Bank Transfer"], active: false },
     { id: "ind5", name: "Individual Trader", type: "individual", rateAdj: 0.98, hours: 18, delivery: "Within 24 Hours", rating: 4.7, reliability: "best", methods: ["Direct Bank Transfer"], active: false }
@@ -178,7 +178,23 @@
     }
   };
 
+  function keepGetFxInView() {
+    const el = document.getElementById("get-fx");
+    if (!el) return;
+    const header = document.querySelector(".site-header");
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const top = window.scrollY + el.getBoundingClientRect().top - headerH;
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, Math.max(0, top));
+    root.style.scrollBehavior = prev;
+  }
+
   function showStep(n) {
+    if (document.activeElement && document.activeElement !== document.body) {
+      document.activeElement.blur();
+    }
     state.step = n;
     document.querySelectorAll("[data-step-panel]").forEach((p) => {
       p.hidden = Number(p.dataset.stepPanel) !== n;
@@ -204,6 +220,9 @@
     }
     if (n === 2) renderBids();
     if (n === 3) renderDeal();
+    keepGetFxInView();
+    requestAnimationFrame(keepGetFxInView);
+    setTimeout(keepGetFxInView, 50);
   }
 
   function renderBids() {
@@ -236,7 +255,7 @@
               <div class="bid-meta">
                 <span class="star-ico" aria-hidden="true">★</span>
                 <span class="bid-rating">${b.rating.toFixed(1)}</span>
-                <span class="rel-badge rel-${badge}"><i></i>${badgeText}</span>
+                <span class="rel-badge rel-${badge}"><i></i>${badgeText}</span>${b.active ? "" : `<span class="rel-badge rel-offline"><i></i>Inactive</span>`}
               </div>
             </div>
           </div>
@@ -382,6 +401,7 @@
       note.hidden = true;
       state.page = 1;
       state.selected = null;
+      state.activeOnly = document.getElementById("active-only").checked;
       showStep(2);
     });
 
