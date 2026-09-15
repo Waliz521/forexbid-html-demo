@@ -131,6 +131,20 @@
         <td>${r.bal}</td>
         <td><button class="st-dl" type="button" data-ref="${r.ref}" aria-label="Download ${r.ref}">${dlIco()}</button></td>
       </tr>`).join("");
+    document.getElementById("st-cards").innerHTML = slice.map((r) => `
+      <article class="dash-bid-card">
+        <div class="dash-bid-top">
+          <span class="req-id">${r.ref}</span>
+          <span class="status-badge ${statusClass(r.status)}">${r.status}</span>
+        </div>
+        <div class="dash-bid-sub">${r.date} · ${r.pair}</div>
+        <dl class="list-kv">
+          <dt>Type</dt><dd><span class="type-chip">${r.type}</span></dd>
+          <dt>Amount</dt><dd class="${r.amount.includes("-") ? "" : "recv-amt"}">${r.amount}</dd>
+          <dt>Balance</dt><dd>${r.bal}</dd>
+        </dl>
+        <button class="st-dl st-dl-card" type="button" data-ref="${r.ref}">${dlIco()} Download</button>
+      </article>`).join("");
     const end = start + slice.length;
     document.getElementById("st-count").textContent =
       `Showing ${rows.length ? start + 1 : 0}-${end} of ${rows.length} transactions`;
@@ -154,7 +168,7 @@
     render();
   });
 
-  document.getElementById("st-body").addEventListener("click", (e) => {
+  document.querySelector(".table-panel").addEventListener("click", (e) => {
     const btn = e.target.closest("[data-ref]");
     if (!btn) return;
     const row = ALL.find((r) => r.ref === btn.dataset.ref);

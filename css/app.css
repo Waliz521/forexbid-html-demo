@@ -482,6 +482,8 @@ body.sidebar-collapsed .app-nav-item {
   font-size: 11px;
   font-weight: 700;
   line-height: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .status-progress {
@@ -775,6 +777,7 @@ body.sidebar-collapsed .app-nav-item {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
   padding: 14px 0;
   border-bottom: 1px solid #e2dce5;
 }
@@ -789,12 +792,41 @@ body.sidebar-collapsed .app-nav-item {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dash-bid-sub {
+  font-size: 12px;
+  color: #625f5c;
+}
+
+.list-kv {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 12px;
+  color: #625f5c;
+}
+
+.list-kv dt {
+  margin: 0;
+}
+
+.list-kv dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+  color: #2d2a26;
+  overflow-wrap: anywhere;
 }
 
 .dash-bid-meta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
   font-size: 12px;
   color: #625f5c;
 }
@@ -810,16 +842,43 @@ body.sidebar-collapsed .app-nav-item {
   gap: 12px;
 }
 
-.dash-bid-card .accept-btn {
+.dash-bid-card .accept-btn,
+.dash-bid-card .enter-cta,
+.dash-bid-card .view-cta {
   width: 100%;
   justify-content: center;
   height: 36px;
+}
+
+.dash-bid-card .bar-tiny {
+  max-width: none;
+}
+
+.dash-bid-card .st-dl-card {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  gap: 6px;
+  border: 1px solid #e2dce5;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a154b;
+}
+
+.bids-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .bids-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
+}
+
+.table-panel .bids-table {
+  min-width: 920px;
 }
 
 .bids-table th {
@@ -829,12 +888,14 @@ body.sidebar-collapsed .app-nav-item {
   color: #625f5c;
   background: #f8fafc;
   padding: 12px;
+  white-space: nowrap;
 }
 
 .bids-table td {
   padding: 12px;
   border-bottom: 1px solid #e2dce5;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .provider-cell {
@@ -1009,7 +1070,8 @@ body.sidebar-collapsed .app-nav-item {
   color: #4a154b;
 }
 
-.enter-cta {
+.enter-cta,
+.view-cta {
   display: inline-flex;
   align-items: center;
   height: 28px;
@@ -1042,12 +1104,20 @@ body.sidebar-collapsed .app-nav-item {
 
 .deal-tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   border-bottom: 1px solid #e2dce5;
 }
 
+.deal-tabs::-webkit-scrollbar {
+  display: none;
+}
+
 .deal-tabs button {
+  flex: 0 0 auto;
   padding: 12px 16px;
   border: 0;
   background: transparent;
@@ -1056,6 +1126,7 @@ body.sidebar-collapsed .app-nav-item {
   color: #625f5c;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
+  white-space: nowrap;
 }
 
 .deal-tabs button.is-on {
@@ -1069,6 +1140,8 @@ body.sidebar-collapsed .app-nav-item {
   border: 1px solid #e2dce5;
   border-radius: 12px;
   padding: 20px;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 /* Notifications */
@@ -2932,13 +3005,18 @@ select.tc-input {
     width: 100%;
   }
 
-  .dash-bids-table {
+  .bids-table-wrap {
     display: none;
   }
 
   .dash-bid-cards {
     display: flex;
     flex-direction: column;
+  }
+
+  .req-toolbar .btn-dash {
+    width: 100%;
+    justify-content: center;
   }
 
   body.is-app input,
@@ -2974,7 +3052,7 @@ select.tc-input {
     width: 100%;
   }
 
-  .dash-bids-table {
+  .bids-table-wrap {
     display: none;
   }
 
@@ -3119,8 +3197,13 @@ select.tc-input {
     align-items: stretch;
   }
 
+  .st-exports {
+    width: 100%;
+  }
+
   .st-btn {
     flex: 1;
+    min-width: 0;
   }
 
   .fund-escrow,

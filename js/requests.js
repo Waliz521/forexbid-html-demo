@@ -60,6 +60,7 @@
     if (page > pages) page = pages;
     const start = (page - 1) * PAGE;
     const slice = rows.slice(start, start + PAGE);
+    const href = (r) => (r.status === "Bid Selected" || r.status === "Completed" ? "deal-flow.html" : "dashboard.html");
     document.getElementById("req-body").innerHTML = slice.map((r) => `
       <tr>
         <td class="req-id">${r.id}</td>
@@ -70,8 +71,22 @@
         <td>${r.rate}</td>
         <td><span class="status-badge ${badgeClass(r.status)}">${r.status}</span></td>
         <td>${r.when}</td>
-        <td><a class="view-cta" href="${r.status === "Bid Selected" || r.status === "Completed" ? "deal-flow.html" : "dashboard.html"}">View Details</a></td>
+        <td><a class="view-cta" href="${href(r)}">View Details</a></td>
       </tr>`).join("");
+    document.getElementById("req-cards").innerHTML = slice.map((r) => `
+      <article class="dash-bid-card">
+        <div class="dash-bid-top">
+          <span class="req-id">${r.id}</span>
+          <span class="status-badge ${badgeClass(r.status)}">${r.status}</span>
+        </div>
+        <div class="dash-bid-sub">${r.pair} · ${r.bids} · ${r.when}</div>
+        <dl class="list-kv">
+          <dt>From</dt><dd>${r.from}</dd>
+          <dt>To</dt><dd>${r.to}</dd>
+          <dt>Best rate</dt><dd>${r.rate}</dd>
+        </dl>
+        <a class="view-cta" href="${href(r)}">View Details</a>
+      </article>`).join("");
     const end = start + slice.length;
     document.getElementById("req-count").textContent = `Showing ${rows.length ? start + 1 : 0}-${end} of ${rows.length} requests`;
     document.getElementById("req-pages").innerHTML = Array.from({ length: pages }, (_, i) => {

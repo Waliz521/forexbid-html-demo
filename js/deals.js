@@ -93,6 +93,25 @@
         <td><span class="status-badge ${badgeClass(d.status)}">${d.status}</span></td>
         <td><a class="enter-cta" href="deal-flow.html">Enter Room</a></td>
       </tr>`).join("");
+    document.getElementById("deal-cards").innerHTML = slice.map((d) => `
+      <article class="dash-bid-card">
+        <div class="dash-bid-top">
+          <span class="req-id">${d.id}</span>
+          <span class="status-badge ${badgeClass(d.status)}">${d.status}</span>
+        </div>
+        <span class="provider-cell"><span class="ico-wrap">${d.type === "org" ? orgIco() : personIco()}</span>${d.party}</span>
+        <dl class="list-kv">
+          <dt>Pair</dt><dd>${d.pair}</dd>
+          <dt>You pay</dt><dd>${d.pay}</dd>
+          <dt>You receive</dt><dd class="recv-amt">${d.recv}</dd>
+          <dt>Rate</dt><dd>${d.rate}</dd>
+        </dl>
+        <div class="fund-cell">
+          <span>${d.funded}% funded</span>
+          <div class="bar-track bar-tiny"><div class="bar-fill ${barClass(d.funded)}" style="width:${d.funded}%"></div></div>
+        </div>
+        <a class="enter-cta" href="deal-flow.html">Enter Room</a>
+      </article>`).join("");
     const end = start + slice.length;
     document.getElementById("deal-count").textContent = `Showing ${rows.length ? start + 1 : 0}-${end} of ${rows.length} deals`;
     document.getElementById("deal-pages").innerHTML = Array.from({ length: pages }, (_, i) => {
