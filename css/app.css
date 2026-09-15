@@ -1021,7 +1021,16 @@ body.sidebar-collapsed .app-nav-item {
 }
 
 .st-filters-group .fx-select {
-  min-width: 160px;
+  width: auto;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.st-filters-group .fx-select-btn {
+  width: auto;
+  min-height: 36px;
+  padding: 6px 10px;
+  white-space: nowrap;
 }
 
 .req-search {
@@ -2841,8 +2850,8 @@ select.tc-input {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  flex-wrap: wrap;
-  padding: 20px;
+  flex-wrap: nowrap;
+  padding: 16px 20px;
   background: #fff;
   border: 1px solid #e2dce5;
   border-radius: 12px;
@@ -2851,13 +2860,16 @@ select.tc-input {
 .st-filters-group {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-wrap: nowrap;
 }
 
 .st-exports {
   display: flex;
-  gap: 12px;
+  flex: 0 0 auto;
+  gap: 8px;
 }
 
 .st-btn {
@@ -2917,6 +2929,11 @@ select.tc-input {
 @media (max-width: 1100px) {
   .metric-row {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .st-filters,
+  .st-filters-group {
+    flex-wrap: wrap;
   }
 
   .tabs-content {
@@ -3195,6 +3212,15 @@ select.tc-input {
   .st-filters {
     flex-direction: column;
     align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .st-filters-group {
+    flex-wrap: wrap;
+  }
+
+  .st-filters-group .fx-select-btn {
+    width: 100%;
   }
 
   .st-exports {
