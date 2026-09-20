@@ -103,6 +103,13 @@
           document.body.classList.remove("sidebar-open");
           if (backdrop) backdrop.hidden = true;
           document.body.classList.toggle("sidebar-collapsed");
+          const fold = root.querySelector(".app-sidebar-fold");
+          if (fold) {
+            fold.setAttribute(
+              "aria-label",
+              document.body.classList.contains("sidebar-collapsed") ? "Expand menu" : "Collapse menu"
+            );
+          }
         }
       });
     });

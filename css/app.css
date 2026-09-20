@@ -121,6 +121,14 @@ body.sidebar-collapsed .app-nav-item {
   padding: 10px;
 }
 
+.app-sidebar-fold svg {
+  transition: transform 0.2s ease;
+}
+
+body.sidebar-collapsed .app-sidebar-fold svg {
+  transform: rotate(180deg);
+}
+
 .app-main {
   flex: 1;
   min-width: 0;
@@ -2926,6 +2934,225 @@ select.tc-input {
   max-width: none;
 }
 
+.pf-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+}
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pf-details-grid {
+  grid-template-columns: 140px 1fr 1fr;
+}
+
+.pf-span-2 {
+  grid-column: 1 / -1;
+}
+
+.pf-form .btn-dash {
+  align-self: flex-start;
+}
+
+.pf-note {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2eb67d;
+}
+
+.pf-kyc-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pf-kyc-hero h2 {
+  margin: 0 0 6px;
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 26px;
+  color: #2d2a26;
+}
+
+.pf-kyc-hero p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #625f5c;
+}
+
+.pf-kyc-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.pf-kyc-ico {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.pf-kyc-status[data-state="progress"] {
+  background: #fdf8e7;
+  color: #d4a017;
+}
+
+.pf-kyc-status[data-state="progress"] .pf-kyc-ico {
+  border: 2px solid #d4a017;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: pf-spin 0.8s linear infinite;
+}
+
+.pf-kyc-status[data-state="ok"] {
+  background: #ebf8f2;
+  color: #2eb67d;
+}
+
+.pf-kyc-status[data-state="ok"] .pf-kyc-ico {
+  box-sizing: border-box;
+  border: 2px solid #2eb67d;
+  border-top: 0;
+  border-left: 0;
+  width: 8px;
+  height: 14px;
+  margin: 0 5px 4px;
+  transform: rotate(40deg);
+}
+
+.pf-kyc-status[data-state="fail"] {
+  background: #fdecec;
+  color: #d92d20;
+}
+
+.pf-kyc-status[data-state="fail"] .pf-kyc-ico {
+  position: relative;
+}
+
+.pf-kyc-status[data-state="fail"] .pf-kyc-ico::before,
+.pf-kyc-status[data-state="fail"] .pf-kyc-ico::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  width: 2px;
+  height: 14px;
+  background: #d92d20;
+}
+
+.pf-kyc-status[data-state="fail"] .pf-kyc-ico::before {
+  transform: rotate(45deg);
+}
+
+.pf-kyc-status[data-state="fail"] .pf-kyc-ico::after {
+  transform: rotate(-45deg);
+}
+
+@keyframes pf-spin {
+  to { transform: rotate(360deg); }
+}
+
+.pf-kyc-why {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: #625f5c;
+}
+
+.pf-uploads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pf-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pf-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.pf-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #e2dce5;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a154b;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pf-upload-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #625f5c;
+}
+
+.pf-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #94918f;
+}
+
+.pf-2fa {
+  padding: 14px 16px;
+  border: 1px solid #e2dce5;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.pf-2fa span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pf-2fa b {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d2a26;
+}
+
+.pf-2fa small {
+  font-size: 12px;
+  color: #625f5c;
+}
+
 @media (max-width: 1100px) {
   .metric-row {
     grid-template-columns: 1fr 1fr;
@@ -3230,6 +3457,22 @@ select.tc-input {
   .st-btn {
     flex: 1;
     min-width: 0;
+  }
+
+  .pf-grid,
+  .pf-details-grid,
+  .pf-uploads {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-kyc-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pf-form .btn-dash {
+    width: 100%;
+    justify-content: center;
   }
 
   .fund-escrow,

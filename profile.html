@@ -14,16 +14,178 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <div id="app-shell" class="app-shell" data-active="settings" data-title="Settings" data-lede="Profile, KYC and security.">
+  <div id="app-shell" class="app-shell" data-active="settings" data-title="My Profile" data-lede="Manage your details, identity verification, and account security.">
     <div class="app-main">
       <div class="app-body">
-        <div class="app-card">
-          <p class="lede">My Profile / Settings is next. Paste any Profile or KYC tabs from Figma.</p>
-          <a class="btn btn-teal" href="dashboard.html">Back to dashboard</a>
+        <div class="table-panel pf-panel">
+          <div class="deal-tabs" id="pf-tabs">
+            <button type="button" class="is-on" data-tab="details">My Details</button>
+            <button type="button" data-tab="kyc">KYC</button>
+            <button type="button" data-tab="security">Security</button>
+          </div>
+
+          <form class="pf-form" id="pf-details" data-panel="details">
+            <div class="pf-grid pf-details-grid">
+              <div class="field">
+                <label for="pf-title">Title</label>
+                <select class="nr-select" id="pf-title">
+                  <option>Mr</option>
+                  <option>Mrs</option>
+                  <option>Ms</option>
+                  <option>Dr</option>
+                  <option>Mx</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="pf-first">First name</label>
+                <input class="tc-input" id="pf-first" type="text" value="James" autocomplete="given-name">
+              </div>
+              <div class="field">
+                <label for="pf-last">Last name</label>
+                <input class="tc-input" id="pf-last" type="text" value="Wilson" autocomplete="family-name">
+              </div>
+            </div>
+            <button class="btn-dash primary" type="submit">Save</button>
+            <p class="pf-note" hidden>Details saved.</p>
+          </form>
+
+          <form class="pf-form" id="pf-kyc" data-panel="kyc" hidden>
+            <div class="pf-kyc-hero">
+              <div class="pf-kyc-art" aria-hidden="true">
+                <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+                  <rect width="72" height="72" rx="36" fill="#F5F3F7"/>
+                  <rect x="16" y="22" width="40" height="28" rx="6" stroke="#4A154B" stroke-width="2"/>
+                  <circle cx="28" cy="36" r="5" stroke="#4A154B" stroke-width="2"/>
+                  <path d="M36 33h14M36 39h10" stroke="#4A154B" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M24 54c2.4-6 8-9 12-9s9.6 3 12 9" stroke="#2EB67D" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h2>We need to quickly verify you!</h2>
+                <p>Please provide us with the following info so we can confirm your identity.</p>
+              </div>
+            </div>
+
+            <div class="pf-kyc-status" id="pf-kyc-status" data-state="progress">
+              <span class="pf-kyc-ico" aria-hidden="true"></span>
+              <span class="pf-kyc-label">Verification in progress</span>
+            </div>
+
+            <p class="pf-kyc-why">We collect this information to meet UK anti-money-laundering rules and to keep both sides of a deal safe. Documents stay on this demo only — nothing is sent to a live check.</p>
+
+            <div class="pf-grid">
+              <div class="field pf-span-2">
+                <label for="pf-addr1">Address line 1</label>
+                <input class="tc-input" id="pf-addr1" type="text" value="14 King Street" autocomplete="address-line1">
+              </div>
+              <div class="field pf-span-2">
+                <label for="pf-addr2">Address line 2</label>
+                <input class="tc-input" id="pf-addr2" type="text" value="Apartment 3" autocomplete="address-line2">
+              </div>
+              <div class="field">
+                <label for="pf-city">City</label>
+                <input class="tc-input" id="pf-city" type="text" value="London" autocomplete="address-level2">
+              </div>
+              <div class="field">
+                <label for="pf-country">Country</label>
+                <select class="nr-select" id="pf-country">
+                  <option value="GB" selected>United Kingdom</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="NG">Nigeria</option>
+                  <option value="IE">Ireland</option>
+                  <option value="DE">Germany</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="pf-dob">Date of birth</label>
+                <input class="tc-input" id="pf-dob" type="date" value="1988-04-12">
+              </div>
+              <div class="field">
+                <label for="pf-gender">Gender</label>
+                <select class="nr-select" id="pf-gender">
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Non-binary</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+              <div class="field pf-span-2">
+                <label for="pf-nation">Nationality</label>
+                <select class="nr-select" id="pf-nation">
+                  <option selected>British</option>
+                  <option>American</option>
+                  <option>Canadian</option>
+                  <option>Nigerian</option>
+                  <option>Irish</option>
+                  <option>German</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pf-uploads">
+              <div class="field">
+                <label for="pf-id-type">Type of ID</label>
+                <select class="nr-select" id="pf-id-type">
+                  <option>Passport</option>
+                  <option>National Identity</option>
+                  <option>Residence permit</option>
+                </select>
+                <label class="pf-upload">
+                  <input id="pf-id-file" type="file" accept=".jpg,.jpeg,.png,.pdf">
+                  <span class="pf-upload-btn">Upload ID</span>
+                  <span class="pf-upload-name" data-empty="No file chosen">No file chosen</span>
+                </label>
+                <p class="pf-hint">JPG, PNG or PDF. Max 5MB. Photo page of your passport or both sides of a national ID.</p>
+              </div>
+              <div class="field">
+                <label for="pf-addr-type">Type of document</label>
+                <select class="nr-select" id="pf-addr-type">
+                  <option>Bank statement</option>
+                  <option>Drivers license</option>
+                  <option>Utility bill</option>
+                  <option>ID</option>
+                </select>
+                <label class="pf-upload">
+                  <input id="pf-addr-file" type="file" accept=".jpg,.jpeg,.png,.pdf">
+                  <span class="pf-upload-btn">Upload proof of address</span>
+                  <span class="pf-upload-name" data-empty="No file chosen">No file chosen</span>
+                </label>
+                <p class="pf-hint">JPG, PNG or PDF. Max 5MB. Issued in the last 3 months and showing your name and address.</p>
+              </div>
+            </div>
+
+            <button class="btn-dash primary" type="submit">Save</button>
+            <p class="pf-note" hidden>KYC details saved. Status updated.</p>
+          </form>
+
+          <form class="pf-form" id="pf-security" data-panel="security" hidden>
+            <div class="pf-grid">
+              <div class="field pf-span-2">
+                <label for="pf-pass">Set new password</label>
+                <input class="tc-input" id="pf-pass" type="password" autocomplete="new-password" placeholder="Enter a new password">
+              </div>
+            </div>
+            <label class="switch-row pf-2fa" for="pf-2fa">
+              <span>
+                <b>Two-factor authentication</b>
+                <small>Ask for a code when you sign in on a new device.</small>
+              </span>
+              <span class="switch nr-switch">
+                <input id="pf-2fa" type="checkbox">
+                <i></i>
+              </span>
+            </label>
+            <button class="btn-dash primary" type="submit">Save</button>
+            <p class="pf-note" hidden>Security settings saved.</p>
+          </form>
         </div>
       </div>
     </div>
   </div>
   <script src="js/app-shell.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/selects.js"></script>
+  <script src="js/dates.js"></script>
 </body>
 </html>

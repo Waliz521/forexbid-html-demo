@@ -61,7 +61,7 @@
         </div>
         <hr>
         <div class="tc-meta">
-          <span>${clock()} Expires: ${p.expiry}</span>
+          <span>${clock()} Expires: ${expiryLabel(p.expiry)}</span>
           <em>${p.bids} Active Bids</em>
         </div>
         <div class="tc-actions">
@@ -96,12 +96,29 @@
     return `${min.trim()} - ${max.trim()}`;
   }
 
+  function toDateValue(value) {
+    if (!value) return "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    const d = Date.parse(String(value).replace(",", " "));
+    if (Number.isNaN(d)) return value;
+    const x = new Date(d);
+    const pad = (n) => String(n).padStart(2, "0");
+    return x.getFullYear() + "-" + pad(x.getMonth() + 1) + "-" + pad(x.getDate());
+  }
+
+  function expiryLabel(value) {
+    const d = window.fxbDates ? window.fxbDates.parse(value) : null;
+    return d && window.fxbDates ? window.fxbDates.pretty(d) : value;
+  }
+
   function val(id) {
     return document.getElementById(id).value.trim();
   }
 
   function setVal(id, value) {
-    document.getElementById(id).value = value;
+    const el = document.getElementById(id);
+    el.value = id === "tc-expiry" ? toDateValue(value) : value;
+    el.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
   function startAdd() {
@@ -116,7 +133,7 @@
     setVal("tc-sell-max", "650.00");
     setVal("tc-buy-min-amt", "NGN 1,000,000");
     setVal("tc-buy-max-amt", "NGN 2,000,000");
-    setVal("tc-expiry", "15 Sep 2026, 10:00 PM");
+    setVal("tc-expiry", "2026-09-15");
     document.getElementById("tc-active").checked = true;
     openModal();
   }
@@ -184,7 +201,7 @@
       sell: joinRange(val("tc-sell-min"), val("tc-sell-max")),
       buyLim: joinRange(val("tc-buy-min-amt"), val("tc-buy-max-amt")),
       sellLim: existing ? existing.sellLim : `${from} 500 - ${from} 50K`,
-      expiry: val("tc-expiry"),
+      expiry: expiryLabel(val("tc-expiry")) || val("tc-expiry"),
       bids: 0
     };
     if (editing) {
