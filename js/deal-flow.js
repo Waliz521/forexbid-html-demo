@@ -242,6 +242,7 @@
   document.getElementById("dispute-form").addEventListener("submit", (e) => {
     e.preventDefault();
     prependEvent("James Wilson (You)", "Dispute reported. Support will review this mock case.", "tone-orange");
+    e.target.reset();
     closeModal(disputeModal);
     showTab("activity");
   });
@@ -260,6 +261,12 @@
     document.getElementById("dr-chat").appendChild(row);
     input.value = "";
     row.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+  document.getElementById("dr-chat-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      document.getElementById("dr-composer").requestSubmit();
+    }
   });
 
   document.getElementById("chat-attach").addEventListener("click", () => {

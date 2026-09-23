@@ -213,20 +213,6 @@
               <button class="fee-link" type="button" id="fee-link">How we calculate service fee</button>
               <hr>
               <div class="deal-row total"><span>Total Outlay</span><strong id="deal-pay-total">GBP 5,050.00</strong></div>
-              <div class="fee-callout" id="fee-callout" hidden>
-                <div class="fee-callout-head">
-                  <span>How we calculate service fee</span>
-                  <button type="button" id="fee-close" aria-label="Close">✕</button>
-                </div>
-                <table>
-                  <thead><tr><th>Send Amount</th><th>Service Fee %</th></tr></thead>
-                  <tbody>
-                    <tr><td>£100 – £250</td><td>7%</td></tr>
-                    <tr class="is-active"><td>£250 – £800</td><td>5%</td></tr>
-                    <tr><td>£800 – £5,000</td><td>3%</td></tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
             <div class="deal-receive">
               <h3>You Receive</h3>
@@ -340,6 +326,26 @@
       </div>
     </section>
   </main>
+
+  <div class="modal" id="fee-callout" role="dialog" aria-modal="true" aria-labelledby="fee-title" hidden>
+    <div class="modal-backdrop" id="fee-close"></div>
+    <div class="modal-card fee-modal-card">
+      <div class="fee-callout-head">
+        <span id="fee-title">How we calculate service fee</span>
+        <button type="button" id="fee-x" aria-label="Close">✕</button>
+      </div>
+      <div class="fee-modal-body">
+        <table>
+          <thead><tr><th>Send Amount</th><th>Service Fee %</th></tr></thead>
+          <tbody>
+            <tr><td>£100 – £250</td><td>7%</td></tr>
+            <tr class="is-active"><td>£250 – £800</td><td>5%</td></tr>
+            <tr><td>£800 – £5,000</td><td>3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <div class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
     <div class="modal-backdrop" data-close-modal></div>

@@ -2032,7 +2032,7 @@ body.sidebar-collapsed .app-sidebar-fold svg {
 
 .chat-composer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 16px;
 }
 
@@ -2040,26 +2040,32 @@ body.sidebar-collapsed .app-sidebar-fold svg {
   flex: 1;
   min-width: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 10px;
-  height: 42px;
-  padding: 0 12px;
+  min-height: 88px;
+  padding: 10px 12px;
   background: #f8fafc;
   border: 1px solid #e2dce5;
   border-radius: 8px;
 }
 
-.chat-input-wrap input[type="text"] {
+.chat-input-wrap textarea {
   flex: 1;
   min-width: 0;
+  min-height: 68px;
+  max-height: 160px;
   border: 0;
   background: transparent;
   outline: none;
+  resize: vertical;
+  font: inherit;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 20px;
+  color: #2d2a26;
+  padding: 0;
 }
 
-.chat-input-wrap input::placeholder {
+.chat-input-wrap textarea::placeholder {
   color: #94918f;
 }
 
@@ -2844,12 +2850,17 @@ select.tc-input {
   gap: 8px;
 }
 
-.dr-modal input[type="text"] {
-  height: 42px;
+.dr-modal textarea {
+  width: 100%;
+  min-height: 96px;
   padding: 12px;
   border: 1px solid #e2dce5;
   border-radius: 8px;
   background: #fff;
+  font: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  resize: vertical;
 }
 
 /* Statements */

@@ -1140,58 +1140,91 @@ button {
   margin-bottom: 8px;
 }
 
-.fee-callout {
-  position: absolute;
-  left: 32px;
-  top: 200px;
-  width: 280px;
+.fee-modal-card {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  max-height: min(80vh, 520px);
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border: 1px solid #e6e6e6;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
   border-radius: 12px;
   padding: 20px;
-  z-index: 4;
 }
 
 .fee-callout-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   margin-bottom: 12px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d2a26;
+  flex-shrink: 0;
 }
 
 .fee-callout-head button {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 14px;
   background: #f2f2f2;
+  flex-shrink: 0;
 }
 
-.fee-callout table {
+.fee-modal-body {
+  overflow: auto;
+  min-height: 0;
+}
+
+.fee-modal-card table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: 13px;
 }
 
-.fee-callout th {
+.fee-modal-card th {
   background: #59388c;
   color: #fff;
   text-align: left;
   padding: 10px 12px;
+  position: sticky;
+  top: 0;
 }
 
-.fee-callout td {
+.fee-modal-card td {
   padding: 10px 12px;
   border-bottom: 1px solid #ebebeb;
 }
 
-.fee-callout tr.is-active td {
+.fee-modal-card tr.is-active td {
   background: #f2edff;
   color: #54388c;
   font-weight: 700;
+}
+
+[data-step-panel].fx-enter {
+  animation: fx-step-in 0.42s ease;
+}
+
+@keyframes fx-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-step-panel].fx-enter {
+    animation: none;
+  }
 }
 
 .swap-wrap {
@@ -1758,6 +1791,7 @@ button {
 }
 
 .rel-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1767,6 +1801,56 @@ button {
   font-size: 10px;
   font-weight: 600;
   line-height: 12px;
+  cursor: help;
+}
+
+.rel-badge[data-hint]::after {
+  content: attr(data-hint);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #2d2a26;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 15px;
+  text-align: center;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 5;
+  box-shadow: 0 8px 20px rgba(45, 42, 38, 0.18);
+}
+
+.rel-badge[data-hint]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2px);
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #2d2a26;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 5;
+}
+
+.rel-badge[data-hint]:hover::after,
+.rel-badge[data-hint]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.rel-badge[data-hint]:hover::before,
+.rel-badge[data-hint]:focus-visible::before {
+  opacity: 1;
 }
 
 .rel-badge i {

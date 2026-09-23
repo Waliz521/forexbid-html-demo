@@ -193,7 +193,7 @@
 
             <form class="chat-composer" id="dr-composer">
               <label class="chat-input-wrap">
-                <input type="text" id="dr-chat-input" placeholder="Type a message..." required>
+                <textarea id="dr-chat-input" rows="3" placeholder="Type a message..." required></textarea>
                 <input type="file" id="chat-file" hidden>
                 <button class="chat-attach" type="button" id="chat-attach" aria-label="Attach file">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 12.5V17a5 5 0 01-10 0V7a3 3 0 016 0v9.5a1.5 1.5 0 01-3 0V8" stroke="#625F5C" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -377,6 +377,10 @@
             <option>Incorrect amount</option>
             <option>Counterparty unresponsive</option>
           </select>
+        </label>
+        <label class="field">
+          <span class="field-label">Details</span>
+          <textarea class="nr-notes" id="dispute-details" rows="4" placeholder="Describe what happened" required></textarea>
         </label>
         <button class="dr-btn danger" type="submit">Submit dispute</button>
       </form>

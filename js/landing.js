@@ -183,7 +183,7 @@
     const headerH = header ? header.getBoundingClientRect().height : 0;
     const steps = document.querySelector(".steps");
     const panel = document.querySelector("[data-step-panel]:not([hidden])");
-    const gap = 8;
+    const gap = 12;
     const available = window.innerHeight - headerH - gap;
     const root = document.documentElement;
     const prev = root.style.scrollBehavior;
@@ -191,6 +191,18 @@
 
     function scrollToY(y) {
       window.scrollTo(0, Math.max(0, y));
+    }
+
+    if (state.step === 2) {
+      const bids = document.querySelector(".bids-panel");
+      if (bids) {
+        const top = window.scrollY + bids.getBoundingClientRect().top;
+        const height = bids.getBoundingClientRect().height;
+        const offset = height < available ? (available - height) / 2 : gap;
+        scrollToY(top - headerH - offset);
+        root.style.scrollBehavior = prev;
+        return;
+      }
     }
 
     if (steps && panel) {
@@ -221,7 +233,13 @@
     }
     state.step = n;
     document.querySelectorAll("[data-step-panel]").forEach((p) => {
-      p.hidden = Number(p.dataset.stepPanel) !== n;
+      const on = Number(p.dataset.stepPanel) === n;
+      p.hidden = !on;
+      p.classList.remove("fx-enter");
+      if (on) {
+        void p.offsetWidth;
+        p.classList.add("fx-enter");
+      }
     });
     document.querySelectorAll("[data-step]").forEach((btn) => {
       const id = Number(btn.dataset.step);
@@ -271,6 +289,12 @@
         const receiveLabel = `${Math.round(b.toAmount).toLocaleString()} ${state.to}`;
         const badge = b.reliability || "normal";
         const badgeText = badge === "best" ? "Best" : badge === "low" ? "Low" : "Normal";
+        const badgeHint =
+          badge === "best"
+            ? "This is a top reliable partner."
+            : badge === "low"
+              ? "This is a below standard partner."
+              : "This is a standard reliable partner.";
         return `<article class="bid-card${featured ? " is-featured" : ""}">
           <div class="bid-who">
             <span class="bid-icon" aria-hidden="true">${bidderIcon(b.type)}</span>
@@ -279,7 +303,7 @@
               <div class="bid-meta">
                 <span class="star-ico" aria-hidden="true">★</span>
                 <span class="bid-rating">${b.rating.toFixed(1)}</span>
-                <span class="rel-badge rel-${badge}"><i></i>${badgeText}</span>${b.active ? "" : `<span class="rel-badge rel-offline"><i></i>Inactive</span>`}
+                <span class="rel-badge rel-${badge}" title="${badgeHint}" data-hint="${badgeHint}"><i></i>${badgeText}</span>${b.active ? "" : `<span class="rel-badge rel-offline"><i></i>Inactive</span>`}
               </div>
             </div>
           </div>
@@ -446,9 +470,13 @@
     });
     document.getElementById("bid-pager").addEventListener("click", (e) => {
       const btn = e.target.closest("[data-page]");
-      if (!btn) return;
+      if (!btn || btn.disabled) return;
+      e.preventDefault();
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
       state.page = Number(btn.dataset.page);
       renderBids();
+      keepGetFxInView();
+      requestAnimationFrame(keepGetFxInView);
     });
 
     document.querySelectorAll("[data-go-step]").forEach((btn) => {
@@ -469,16 +497,20 @@
     const feeLink = document.getElementById("fee-link");
     const feeBox = document.getElementById("fee-callout");
     const feeClose = document.getElementById("fee-close");
+    const feeX = document.getElementById("fee-x");
+    function closeFee() {
+      if (!feeBox) return;
+      feeBox.classList.remove("open");
+      feeBox.hidden = true;
+    }
     if (feeLink && feeBox) {
       feeLink.addEventListener("click", () => {
-        feeBox.hidden = !feeBox.hidden;
+        feeBox.hidden = false;
+        feeBox.classList.add("open");
       });
     }
-    if (feeClose && feeBox) {
-      feeClose.addEventListener("click", () => {
-        feeBox.hidden = true;
-      });
-    }
+    if (feeClose) feeClose.addEventListener("click", closeFee);
+    if (feeX) feeX.addEventListener("click", closeFee);
 
     document.querySelectorAll("[data-close-modal]").forEach((el) => {
       el.addEventListener("click", closeCheckout);
