@@ -365,12 +365,22 @@
   }
 
   function openCheckout() {
-    document.getElementById("checkout-modal").classList.add("open");
+    const modal = document.getElementById("checkout-modal");
+    const card = modal.querySelector(".modal-card");
+    modal.classList.add("open");
     document.body.style.overflow = "hidden";
+    if (card) {
+      card.classList.remove("fx-enter");
+      void card.offsetWidth;
+      card.classList.add("fx-enter");
+    }
   }
 
   function closeCheckout() {
-    document.getElementById("checkout-modal").classList.remove("open");
+    const modal = document.getElementById("checkout-modal");
+    const card = modal.querySelector(".modal-card");
+    if (card) card.classList.remove("fx-enter");
+    modal.classList.remove("open");
     document.body.style.overflow = "";
   }
 

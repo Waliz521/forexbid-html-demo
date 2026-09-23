@@ -1206,14 +1206,15 @@ button {
   font-weight: 700;
 }
 
-[data-step-panel].fx-enter {
-  animation: fx-step-in 0.42s ease;
+[data-step-panel].fx-enter,
+.modal.open .modal-card.fx-enter {
+  animation: fx-step-in 0.75s ease-out;
 }
 
 @keyframes fx-step-in {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(28px);
   }
   to {
     opacity: 1;
@@ -1221,8 +1222,15 @@ button {
   }
 }
 
+@keyframes fx-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  [data-step-panel].fx-enter {
+  [data-step-panel].fx-enter,
+  .modal.open,
+  .modal.open .modal-card.fx-enter {
     animation: none;
   }
 }
@@ -2367,6 +2375,7 @@ button {
 
 .modal.open {
   display: flex;
+  animation: fx-backdrop-in 0.75s ease-out;
 }
 
 .modal-backdrop {
